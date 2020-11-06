@@ -9,7 +9,7 @@
 
   window.addEventListener("load",function(){
   
-    var map= L.map('mapita').setView([-33.694113,-71.214489],18);
+    var map= L.map('mapita').setView([-33.694113,-71.214489],13);
 
  L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png', { 
    attribution:' <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
@@ -17,12 +17,13 @@
    // setTimeout(function(){
    //   loginPopup.classList.add("show");
    // },5000)
-
+ 
 
   let iconMarker = L.icon({
-    iconUrl: 'https://www.nipnip.co.uk/wp-content/uploads/2020/04/Fleet-Maintenance-icon.png',
-    iconSize: [60, 60],
-    iconAnchor: [20, 20]
+    iconUrl: 'https://cdn.mapmarker.io/api/v1/pin?size=178&background=%23FE9200&icon=fa-bicycle&color=%23FFFFFF&voffset=0&hoffset=1&',
+    iconSize: [70, 70],
+    iconAnchor: [40, 40],
+    popupAnchor:  [-5, -30]
     
 })
 

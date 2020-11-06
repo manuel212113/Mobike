@@ -13,14 +13,23 @@ body {
 
 
 
-.content { padding: 80px 0;}
+.content { 
+  
+  padding: 80px 0;
+  margin-top: 40px;
+}
 
 
 .localization {
   color: #34495e; 
   padding-bottom: 0;}
-
-  .title {margin-bottom: 40px; font-family:  Segoe UI, sans-serif; font-weight: bold; font: 60px ; text-transform: uppercase;}
+   
+  .title {margin-bottom: 40px; 
+    font-family:  Segoe UI, sans-serif; 
+    font-weight: bold; 
+    font: 60px ; 
+    text-transform: uppercase;
+  }
 
 
 #mapita{
@@ -114,7 +123,7 @@ body {
 
 .planes{
     background-color: white;
-    height: 600px;
+    height: 400px;
    
     
    
@@ -179,11 +188,13 @@ body {
   .button {
     background-color: blue;
     border: none;
+    border-radius: 10px;
     color: white;
     padding: 10px 25px;
     text-align: center;
     text-decoration: none;
     font-size: 18px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
 
 #txtplan{
@@ -333,6 +344,38 @@ body {
 
 
 
+.footer{
+  height: 130px;
+  width: 100%;
+  background-color: #FF5722;
+ 
+  color: white;
+  font-size: large;
+}
+
+
+
+#rs{
+  display: flex;
+  justify-content: space-around ;
+  max-width: 180px;
+  height: 50px;
+  margin-top: 70px;
+  margin-left: 30px;
+
+}
+
+
+ .txtfooter{
+  display: flex;
+  justify-content: space-between ;
+  max-width: 90%;
+  margin-left: 30px;
+}
+
+
+
+
 
 
 
@@ -349,6 +392,10 @@ body {
 
         
 
+    }
+
+    .footer{
+      font-size: medium;
     }
 
     .tarifas{
