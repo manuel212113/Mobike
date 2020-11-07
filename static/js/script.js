@@ -35,7 +35,7 @@ function showMap(){
   
 
   let iconMarker = L.icon({
-    iconUrl: 'https://cdn.mapmarker.io/api/v1/pin?size=178&background=%23FE9200&icon=fa-bicycle&color=%23FFFFFF&voffset=0&hoffset=1&',
+    iconUrl: 'static/img/marker.png',
     iconSize: [70, 70],
     iconAnchor: [40, 40],
     popupAnchor:  [-5, -30]
