@@ -1,0 +1,493 @@
+@import url("https://fonts.googleapis.com/css?family=Titillium+Web");
+* {
+  font-family: "Titillium Web", sans-serif;
+}
+body {
+  height: 2000px;
+}
+
+
+
+
+
+
+
+
+.content { 
+  
+  padding: 80px 0;
+  margin-top: 40px;
+}
+
+
+.localization {
+  color: #34495e; 
+  padding-bottom: 0;}
+   
+  .title {margin-bottom: 40px; 
+    font-family:  Segoe UI, sans-serif; 
+    font-weight: bold; 
+    font: 60px ; 
+    text-transform: uppercase;
+  }
+
+
+#mapita{
+  height: 400px;
+  width: 100%;
+}
+
+
+
+
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+ 
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #FF5722;
+  width: 150px;
+  height: 150px;
+  -webkit-animation: spin 5s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+
+
+
+
+
+.navbar .navbar-brand {
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+}
+.navbar .nav-item {
+  padding: 10px 20px;
+  color: white;
+
+}
+.navbar .nav-link {
+  font-size: 20px;
+  margin-left: 10px;
+  color: white;
+}
+.fa-bars {
+  color: white;
+  font-size: 30px;
+
+}
+
+
+.navbar{
+    color: orange;
+}
+
+
+#IngresarBtn{
+    border-style: solid;
+    border-width: medium;
+    border: 4px solid white;
+    background-color:#FF5722;
+    color:white;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+
+#IngresarBtn:hover{
+    color: #FF5722;
+    background-color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+
+.noticias{
+    width: 100%;
+    color: white;
+    height: 60px;
+    background-color: blue;    
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    font-size: medium;
+   
+   
+}
+
+
+.noticias p{
+    font-size: 40px;
+}
+
+.noticias p:hover{
+    color: yellow;
+}
+
+
+
+.planes{
+    background-color: white;
+    height: 400px;
+   
+    
+   
+    
+    
+}
+
+.columns {
+    float: left;
+    width: 33.3%;
+    padding: 15px;
+    align-items: center;
+    
+  }
+
+  #precio_plan{
+      font-size: 20px;
+      font-weight: bold;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      
+  }
+  
+  /* Style the list */
+  .price {
+    list-style-type: none;
+    border: 1px solid black;
+    margin: 0;
+    padding: 0;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    border-radius: 6px;
+  }
+  
+  /* Add shadows on hover */
+  .price:hover {
+    box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
+  }
+  
+  /* Pricing header */
+  .price .header {
+    background-color: #FF5722;
+    color: white;
+    font-size: 25px;
+  }
+  
+  /* List items */
+  .price li {
+    border-bottom: 1px solid #eee;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Grey list item */
+  .price .grey {
+    background-color: #FF5722;
+    font-size: 20px;
+  }
+
+
+  
+  /* The "Sign Up" button */
+  .button {
+    background-color: blue;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+#txtplan{
+    color: blue;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 50px;
+    text-align: center;
+}
+
+
+.login-popup{
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1099;
+	background-color:rgba(0,0,0,0.6);
+	visibility: hidden;
+	opacity: 0;
+	transition: all 1s ease;
+}
+.login-popup.show{
+	visibility:visible;
+	opacity: 1;
+}
+.login-popup .box{
+	background-color:#ffffff;
+	width: 750px;
+	position: absolute;
+	left: 50%;
+	top:50%;
+	transform:translate(-50%,-50%);
+	display: flex;
+	flex-wrap: wrap;
+	opacity: 0;
+	margin-left: 50px;
+	transition: all 1s ease;
+
+}
+.login-popup.show .box{
+	opacity: 1;
+	margin-left: 0;
+}
+.login-popup .box .img-area{
+	flex:0 0 50%;
+	max-width: 50%;
+	position: relative;
+	overflow: hidden;
+	padding:30px;
+	display: flex;
+	align-items: center;
+  justify-content: center;
+}
+.login-popup .box .img-area h1{
+  font-size: 50px;
+  font-family: "Titillium Web", sans-serif;
+  color: white;
+  font-weight: bold;
+ 
+}
+.login-popup .box .img-area .img{
+	position: absolute;
+	left:0;
+	top:0;
+	width: 100%;
+	height: 100%;
+	background-image: url('https://cdn.ticbeat.com/src/uploads/2017/01/mobike.jpg');
+  background-size: cover;
+  background-color: rgba(0,0,0,0.8);
+	background-position: center;
+	
+  z-index: -1;
+  filter:brightness(0.4);
+  
+
+}
+
+.login-popup .box .form{
+	flex:0 0 50%;
+	max-width: 50%;
+	padding:40px 30px;
+}
+
+.login-popup .box .form h1{
+	color:#000000;
+	font-size: 30px;
+  margin:0 0 30px;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: bold;
+}
+.login-popup .box .form .form-control{
+	height: 45px;
+	margin-bottom: 30px;
+	width: 100%;
+	border:none;
+	border-bottom:1px solid #cccccc;
+	font-size: 15px;
+}
+.login-popup .box .form .form-control:focus{
+ color: #FF5722;
+}
+.login-popup .box .form label{
+	font-size: 15px;
+  color:black;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+
+
+.login-popup .box .form .btnLogin{
+	width: 100%;
+	background-color: #FF5722;
+	margin-top:40px;
+	height: 45px;
+	border:none;
+	border-radius: 25px;
+	font-size: 15px;
+	text-transform: uppercase;
+	color:#ffffff;
+	cursor: pointer;
+}
+.login-popup .box .form .btnLogin:hover{
+  outline: none;
+  
+}
+
+.login-popup .box .form .close{
+	position: absolute;
+	right: 10px;
+	top:0px;
+	font-size: 30px;
+  cursor: pointer;
+  color: red;
+}
+
+
+.planes p{
+   text-align: center;
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+   font-weight: bold;
+
+}
+
+
+
+
+.footer{
+  height: 130px;
+  width: 100%;
+  background-color: #FF5722;
+ 
+  color: white;
+  font-size: large;
+}
+
+
+
+#rs{
+  display: flex;
+  justify-content: space-around ;
+  max-width: 180px;
+  height: 50px;
+  margin-top: 70px;
+  margin-left: 30px;
+
+}
+
+
+ .txtfooter{
+  display: flex;
+  justify-content: space-between ;
+  max-width: 90%;
+  margin-left: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media(max-width:900px){
+    .carousel-item img{
+        height: 300px;
+        width:100% ;
+
+        
+
+    }
+
+
+    .navbar,.nav-item{
+      z-index:2;
+    }
+
+    #mapita{
+      z-index:1;
+    }
+
+    .footer{
+      font-size: medium;
+      height: 80px;
+    }
+
+    .tarifas{
+      height: 250px;
+      width:100% ;
+      margin-top: 500px;
+    }
+    .tarifas p{
+      font-size: small;
+      max-width: 100%;
+    }
+
+    .title{
+      font-size: x-large;
+    }
+
+    .columns {
+        width: 100%;
+      }
+
+    .noticias{
+        text-align: center;
+       
+       
+    }
+
+    .noticias p{
+        font-size: 30px;
+    }
+
+   
+    .login-popup .box{
+      width: calc(100% - 30px);
+    }
+    .login-popup .box .img-area{
+      display: none;
+    }
+    .login-popup .box .form{
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+   
+
+}
