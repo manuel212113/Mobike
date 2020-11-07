@@ -10,11 +10,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    
+    </script>
     <link href="estilo.css" rel="stylesheet">
     <title>Mobike-Arriendo de Bicicletas</title>
 </head>
-<body>
+<body onload="showMap()" >
+
+
 
 
   <nav class="navbar sticky-top navbar-expand-lg bg-warning">
@@ -62,7 +66,7 @@
 
   <div class="bannerInicio" style="background-color:black;">
     
-   <img src="https://www.fmdos.cl/wp-content/uploads/2018/03/Mobike1.jpg" width="100%"  alt="bicicleta banner" style="">
+   <img src="https://i.imgur.com/MulECb4.jpg" width="100%"  alt="bicicleta banner" >
 
 
   </div>
@@ -132,7 +136,7 @@
     
     <section class="content localization">
     <h2 class="title" style="text-align: center;">Estaciones</h2>
-      <p style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae quas molestias quibusdam cum corrupti deserunt, explicabo ipsam id, itaque iste!</p>
+      <p style="text-align: center;">Revisa la estacion mas cercana!</p>
     <div id="mapita"></div>
     </section>
 
@@ -151,8 +155,8 @@
     
 
     </footer>
-    
 </body>
 <script src="script.js"></script>
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
 </html>
