@@ -13,15 +13,21 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.urls import path
-from AppMobike.Controllers import HomeController
-from AppMobike.Controllers import HomeController
+from . import views
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LogoutView
+from django.contrib.auth import views as auth_views
+import include
+from django.contrib import admin
+
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', HomeController.HomePage, name="HomePage"),
-    path('Facebook', HomeController.FacebookPage, name="FacebookPage")
+    path('', LoginView.as_view(template_name='views/index.html') , name='login'),
+    path('Facebook', views.FacebookPage, name="FacebookPage"),
+    path('Dashboard', views.Dashboard, name="Dashboard"),
+
 
 ]
