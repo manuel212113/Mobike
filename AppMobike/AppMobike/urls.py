@@ -21,13 +21,21 @@ from django.contrib.auth import views as auth_views
 import include
 from django.contrib import admin
 
+from AppMobike.Controllers import HomeController
+from AppMobike.Controllers import UserController
+
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', LoginView.as_view(template_name='views/index.html') , name='login'),
-    path('Facebook', views.FacebookPage, name="FacebookPage"),
-    path('Dashboard', views.Dashboard, name="Dashboard"),
+
+    path('',LoginView.as_view(template_name='views/index.html') , name='login'),
+    path('Facebook', HomeController.FacebookPage, name='FacebookPage'),
+    path('Dashboard',UserController.DashboardUser, name='DashboardUser'),
+    path('logout', HomeController.HomePage, name='HomePage'),
+    path('Dashboard/users', UserController.DisplayUserList, name='DisplayUserList' ),
+    
+
 
 
 ]

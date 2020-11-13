@@ -1230,7 +1230,9 @@ section {
 
 @media (max-width: 991px) {
     .logo {
-        text-align: center;
+        width:70%;
+        height: auto;
+        margin-left:50px;
     }
 }
 
