@@ -18,6 +18,8 @@ from . import views
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.decorators import login_required
+
 import include
 from django.contrib import admin
 
@@ -26,14 +28,18 @@ from AppMobike.Controllers import UserController
 
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('',LoginView.as_view(template_name='views/index.html') , name='login'),
     path('Facebook', HomeController.FacebookPage, name='FacebookPage'),
-    path('Dashboard',UserController.DashboardUser, name='DashboardUser'),
-    path('logout', HomeController.HomePage, name='HomePage'),
+    path('Dashboard',login_required(UserController.DashboardUser), name='DashboardUser'),
+    path('logout', LogoutView.as_view(template_name='views/index.html'), name='logout'),
     path('Dashboard/users', UserController.DisplayUserList, name='DisplayUserList' ),
+    path('Dashboard/users/delete/<int:id>', login_required(UserController.DeleteUser), name='DeleteUser'),
+    path('Dashboard/users/block/<int:id>', login_required(UserController.BlockUser), name='BlockUser')
+
     
 
 

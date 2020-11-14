@@ -25,7 +25,7 @@ SECRET_KEY = '8*%=a+*c&)sw08jka^yb339vds+n5&^^n*2i_cyds@92bj7-j7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["192.168.43.146", "localhost","127.0.0.1"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -124,7 +124,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-LOGIN_URL = '/Dashboard '
+LOGIN_URL = '/'
 
 
 LOGIN_REDIRECT_URL = '/Dashboard'

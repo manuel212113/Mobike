@@ -74,18 +74,19 @@
                                 </li>
                             </ul>
                         </li>
+                        {% if rol_user == "Funcionario" %} 
+
                         <li>
                             <a href="chart.html">
-                                <i class="fas fa-chart-bar"></i>Charts</a>
+                                <i class="fas fa-file-word"></i>Reportes</a>
                         </li>
+                        {% elif rol_user == "Administrador" %} 
+
                         <li>
-                            <a href="table.html">
-                                <i class="fas fa-table"></i>Tables</a>
+                            <a href="Dashboard/users">
+                                <i class="fas fa-users"></i>Usuarios</a>
                         </li>
-                        <li>
-                            <a href="form.html">
-                                <i class="far fa-check-square"></i>Forms</a>
-                        </li>
+                        {% endif %}
                         <li>
                             <a href="calendar.html">
                                 <i class="fas fa-calendar-alt"></i>Calendar</a>

@@ -43,7 +43,7 @@ class UserMobike(AbstractBaseUser):
      name=models.CharField('Nombre',max_length=200,blank=False,null=False)
      last_name=models.CharField('Apellido',max_length=200)
      user_type=models.CharField( max_length=300, default='Cliente')
-     Image_Profile = models.ImageField('Imagen de Perfil', upload_to='profile/', height_field=None, width_field=None, max_length=200)
+     Image_Profile = models.ImageField('Imagen de Perfil', upload_to='profile/',  height_field=None, width_field=None, max_length=200)
      state_account = models.BooleanField( default=True)
      admin_user = models.BooleanField( default=False)
      objects=UserMobikeManager() 
