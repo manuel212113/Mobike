@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect,HttpResponse
 
 import pyrebase
 
-from django.contrib.auth.models import User
+from AppMobike.models import UserMobike
 
 
 from django.contrib.auth.models import Group
@@ -31,19 +31,21 @@ counter=0
 
 
 def GetCurrentUser(request):
-    current_user=request.user
+    current_user=request.user.username
     return current_user
  
 
 
 def DashboardUser(request):
-    current_user = request.user 
+    current_user = request.user.username
+    rol=''
+    if UserMobike.objects.filter(username=current_user, user_type='Funcionario'):
+        rol='Funcionario'
+        return render(request,'views/Dashboard.html' ,{'username':current_user, 'rol_user':rol } )
 
-    if User.objects.filter(username=current_user, groups__name='Funcionario').exists(): #grupo de funcionario
-        return render(request,'views/Dashboard.html' ,{'username':current_user} )
-
-    elif User.objects.filter(username=current_user, groups__name='Administrador').exists():
-        return render(request,'views/Dashboard.html' ,{'username':current_user} )
+    elif UserMobike.objects.filter(username=current_user, user_type='Administrador'):
+        rol='Administrador'
+        return render(request,'views/Dashboard.html' ,{'username':current_user, 'rol_user':rol} )
 
 
     else:
@@ -52,10 +54,10 @@ def DashboardUser(request):
 
 def DisplayUserList(request):
      all_users={}
-     all_users = User.objects.values()
+     all_users = UserMobike.objects.values()
      current_user=GetCurrentUser(request)
      all_users = list(all_users)
-     return render(request,'views/users.html', {'ListUsers':all_users, 'username':current_user, 'group':user_group })
+     return render(request,'views/users.html', {'ListUsers':all_users, 'username':current_user})
 
 
 

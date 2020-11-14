@@ -481,7 +481,9 @@
                                                 </th>
                                                 <th>Username</th>
                                                 <th>email</th>
-                                                <th></th>
+                                                <th>Tipo Usuario</th>
+                                                <th>Estado Cuenta</th>
+
                                             </tr>
 
                                         </thead>
@@ -491,10 +493,10 @@
 
                                             {% for row in ListUsers %}
 
-                                            <tr class="tr-shadow">
+                                            <tr class="tr-shadow" style="">
                                                 <td>
                                                     <label class="au-checkbox">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" disabled="disabled">
                                                         <span class="au-checkmark"></span>
                                                     </label>
                                                 </td>
@@ -505,7 +507,17 @@
                                                     <span class="block-email">{{row.email}}</span>
                                                 </td>
 
+                                                <td>
+                                                    <span class="desc">{{row.user_type}}</span>
+                                                </td>
+
                                                 
+
+                                                <td>
+                                                    <span class="desc">Cuenta Activa:{{row.state_account}}</span>
+                                                </td> 
+
+
 
 
 
@@ -518,7 +530,7 @@
                                                         </button>
                                                         
                                                         <button class="item" data-toggle="tooltip" data-placement="top" title="Eliminar">
-                                                            <i class="zmdi zmdi-delete"></i>
+                                                           <a href="/delete/account/{{row.id}}"> <i  class="zmdi zmdi-delete"></i></a>
                                                         </button>
                                                         <button class="item" data-toggle="tooltip" data-placement="top" title="Mas">
                                                             <i class="zmdi zmdi-more"></i>

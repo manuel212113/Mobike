@@ -182,13 +182,13 @@
                                 </li>
                             </ul>
                         </li>
-                        {% if user.groups.all.0.name == "Funcionario" %} 
+                        {% if rol_user == "Funcionario" %} 
 
                         <li>
                             <a href="chart.html">
                                 <i class="fas fa-file-word"></i>Reportes</a>
                         </li>
-                        {% elif user.groups.all.0.name == "Administrador" %} 
+                        {% elif rol_user == "Administrador" %} 
 
                         <li>
                             <a href="Dashboard/users">

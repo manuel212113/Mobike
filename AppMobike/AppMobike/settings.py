@@ -132,3 +132,4 @@ LOGIN_REDIRECT_URL = '/Dashboard'
 
 LOGOUT_REDIRECT_URL='/'
 
+AUTH_USER_MODEL = 'AppMobike.UserMobike'
