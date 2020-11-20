@@ -7,7 +7,7 @@ from django.dispatch import receiver
 
 
 class UserMobikeManager(BaseUserManager):
-    def create_user(self,email,username,name,last_name,password = None):
+    def create_user(self,email,username,name,last_name,RUT,password = None):
         if not email:
             raise ValueError('El Usuario debe tener un correo Electronico')
 
@@ -15,19 +15,21 @@ class UserMobikeManager(BaseUserManager):
          username=username,
          email=self.normalize_email(email), 
          name=name,
+         RUT=RUT,
          last_name=last_name
         )
         user.set_password(password)
         user.save()
         return user
 
-    def create_superuser(self,username,email,name,last_name,password):
+    def create_superuser(self,username,email,name,last_name,RUT,password):
         
         user=self.create_user(
          email , 
          username=username,
          name=name, 
          last_name=last_name,
+         RUT=RUT,
          password=password
 
         )
@@ -43,14 +45,16 @@ class UserMobike(AbstractBaseUser):
      name=models.CharField('Nombre',max_length=200,blank=False,null=False)
      last_name=models.CharField('Apellido',max_length=200)
      user_type=models.CharField( max_length=300, default='Cliente')
-     Image_Profile = models.ImageField('Imagen de Perfil', upload_to='profile/',  height_field=None, width_field=None, max_length=200)
+     account_balance=models.CharField(max_length=50,default="0")
+     Image_Profile = models.ImageField('Imagen de Perfil',   height_field=None, width_field=None, max_length=200)
      state_account = models.BooleanField( default=True)
+     RUT=models.CharField('RUT',max_length=13 , unique=True)
      admin_user = models.BooleanField( default=False)
      objects=UserMobikeManager() 
      
      USERNAME_FIELD= 'username'
 
-     REQUIRED_FIELDS=['email','name','last_name']
+     REQUIRED_FIELDS=['email','name','last_name','RUT']
 
      def __str__(self):
          return f'{self.name},{self.last_name}'
@@ -63,3 +67,27 @@ class UserMobike(AbstractBaseUser):
      @property
      def is_staff(self):
          return self.admin_user 
+
+
+
+class BikeStations(models.Model):
+      name= models.CharField('Nombre Estacion', max_length=200,unique=True,null=False) 
+      Latitude= models.DecimalField('Latitud',max_digits=22, decimal_places=8, blank=True, null=False)
+      Longitude= models.DecimalField('Longitud',max_digits=22, decimal_places=9, blank=True, null=False)
+
+      class Meta:
+          verbose_name_plural="Estacion"
+      def __str__(self):
+          return self.name
+
+
+class BikesModel(models.Model):
+      MODELS_BIKE=(('cannondale habit 1','CANNONDALE HABIT 1'),('canyon lux cf slx 9.0','CANYON LUX  9.0'),('cube ams 100','CUBE AMS 100'))
+      STATIONS=BikeStations.objects.all().values('name')
+      code_bike=models.CharField('Numero Bicicleta',max_length=15,null=False,unique=True)
+      bike_model=models.CharField('Modelo Bicicleta', max_length=50,choices=MODELS_BIKE )
+      state_bike=models.CharField('Estado Bicicleta', max_length=30, default="Libre")
+      ## Estacion de la bicicleta ##
+      station=models.ForeignKey(BikeStations,verbose_name="Estacion",default=000, on_delete=models.SET_DEFAULT)
+
+

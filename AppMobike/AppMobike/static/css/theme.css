@@ -4315,8 +4315,21 @@ section {
         -ms-flex-direction: column;
         flex-direction: column;
     }
+
+    
 }
 
+
+@media (min-width: 10px) and (max-width: 900px) {
+
+  #map{
+      width: 140%;
+
+  }
+
+
+
+}
 @media (max-width: 991px) {
     .table-wrap {
         -webkit-box-orient: vertical;
@@ -4326,6 +4339,11 @@ section {
         -moz-box-direction: normal;
         -ms-flex-direction: column;
         flex-direction: column;
+    }
+
+    #map{
+        width: 120%;
+        margin-left: -40px;
     }
 }
 
@@ -14643,8 +14661,8 @@ section {
     height: 120px;
 }
 
-.vmap {
-    width: 100%;
+#vmap {
+    width: 120%;
     height: 400px;
 }
 

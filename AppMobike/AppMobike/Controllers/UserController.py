@@ -40,10 +40,29 @@ def CheckStatusAccount(request):
      if status_account.state_account == False:
         return True
 
+def GetProfileImage(request):
+    ProfileImage=request.user.Image_Profile
+    return ProfileImage
+
+
 def GetCurrentUser(request):
     current_user=request.user.username
     return current_user
  
+
+def GetEmailCurrentUser(request):
+    email=request.user.email
+    return email
+
+def GetCurrentTypeUser(request):
+    user_type=request.user.user_type
+    return user_type
+
+
+
+def ShowRegisterForm(request):
+    return render(request,'views/register.html')
+
 
 
 def DashboardUser(request):
@@ -64,6 +83,10 @@ def DashboardUser(request):
         rol='Administrador'
         return render(request,'views/Dashboard.html' ,{'username':current_user, 'rol_user':rol} )
 
+    elif UserMobike.objects.filter(username=current_user, user_type='Cliente'):
+        rol='Cliente'
+        return render(request,'views/Dashboard.html' ,{'username':current_user, 'rol_user':rol} )
+
 
     else:
       return redirect("http://127.0.0.1:8000/")
@@ -73,6 +96,9 @@ def DisplayUserList(request):
 
      if CheckStatusAccount(request):
         return HttpResponse("<h1>Tu Cuenta esta Bloqueda Contacta con Administración </h1> <a href=/logout>Cerrar Sesion</a> ." )
+
+     if GetCurrentTypeUser(request)=="Funcionario" or GetCurrentTypeUser(request)=="Cliente":
+        return HttpResponse("<h1>Acceso Denegado </h1> <a href=/Dashboard>ir Al Panel de Inicio</a> ." )
 
 
      all_users={}
@@ -84,6 +110,9 @@ def DisplayUserList(request):
 
 @login_required
 def DeleteUser(request,id):
+
+    if GetCurrentTypeUser(request)=="Funcionario" or GetCurrentTypeUser(request)=="Cliente":
+        return HttpResponse("<h1>Acceso Denegado </h1> <a href=/Dashboard>ir Al Panel de Inicio</a> ." )
    
     if CheckStatusAccount(request)==False:
         return HttpResponse("<h1>Tu Cuenta esta Bloqueda Contacta con Administración </h1> <a href=/logout>Cerrar Sesion</a> ." )
@@ -102,18 +131,33 @@ def BlockUser(request,id):
    if CheckStatusAccount(request):
         return HttpResponse("<h1>Tu Cuenta esta Bloqueda Contacta con Administración </h1> <a href=/logout>Cerrar Sesion</a> ." )
    
-   
+
+   if GetCurrentTypeUser(request)=="Funcionario" or GetCurrentTypeUser(request)=="Cliente":
+        return HttpResponse("<h1>Acceso Denegado </h1> <a href=/Dashboard>ir Al Panel de Inicio</a> ." )
+
    status_account = UserMobike.objects.get(id=id)
 
    
    if status_account.state_account == False:
-       print('Actualizar en false')
        UserMobike.objects.filter(id=id).update(state_account=True)
        return redirect('/Dashboard/users')
-   elif status_account.state_account == True:
-       print('Actualizar en True')
+   elif status_account.state_account:
        UserMobike.objects.filter(id=id).update(state_account=False)
        return redirect('/Dashboard/users')
+
+
+
+
+def UpdateUserType(request,id,user_type):
+
+    if CheckStatusAccount(request):
+        return HttpResponse("<h1>Tu Cuenta esta Bloqueda Contacta con Administración </h1> <a href=/logout>Cerrar Sesion</a> ." )
+   
+
+    if GetCurrentTypeUser(request)=="Funcionario" or GetCurrentTypeUser(request)=="Cliente":
+        return HttpResponse("<h1>Acceso Denegado </h1> <a href=/Dashboard>ir Al Panel de Inicio</a> ." )
+    UserMobike.objects.filter(id=id).update(user_type=user_type)
+    return redirect('/Dashboard/users')
 
 
 
