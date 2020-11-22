@@ -4,6 +4,8 @@ from django.shortcuts import render,get_object_or_404,redirect,HttpResponse
 import pyrebase
 
 from AppMobike.models import BikeStations
+from AppMobike.models import BikesModel
+
 from AppMobike.Controllers import UserController
 
 from django.core import serializers
@@ -19,8 +21,10 @@ def RentBike(request):
     json_serializer = serializers.get_serializer("json")()
     stations = json_serializer.serialize(BikeStations.objects.all().order_by('name'), ensure_ascii=False)
     current_user=UserController.GetCurrentUser(request)
+
     BikeStations_list={}
     BikeStations_list = BikeStations.objects.values('name','Longitude','Latitude')
+   
 
 
     
