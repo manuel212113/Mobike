@@ -10,7 +10,7 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Maps</title>
+    <title>Arrendar</title>
 
     <!-- Fontfaces CSS-->
     <link href="/static/css/font-face.css" rel="stylesheet" media="all">
@@ -18,7 +18,7 @@
     <link href="/static/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-    <!--RUTA-->
+
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -39,7 +39,10 @@
     <!--GeoAdress-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet-geosearch@3.1.0/dist/geosearch.css" />
     <script src="https://unpkg.com/leaflet-geosearch@3.1.0/dist/geosearch.umd.js"></script>
+    <!--RUTA-->
 
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.11/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.11/dist/leaflet-routing-machine.js"></script>
 
 
 
@@ -566,6 +569,7 @@
     <script>
 
         var lat_destino, lon_destino, Nombre_destino;
+        var lat_actual, lon_actual;
         const provider = new GeoSearch.BingProvider({
             params: {
                 key: 'AgBxeF9_Du7s-MRwc44BPh56F0XdA1FBc-lSXqmCdtmAKk6wawbUKY8G93kN5Odw',
@@ -672,7 +676,8 @@
 
 
 
-
+        Bikes = {}
+        Bikes = {{ Bikes | safe }};
 
 
 
@@ -687,27 +692,84 @@
         function CodBicicleta() {
             var cod_bicicleta;
             (async () => {
-            const { value: formValues } = await Swal.fire({
-                title: 'Codigo Bicicleta',
-                inputLabel: 'Ingrese el Codigo de la Bicicleta',
-                icon: 'info',
-                html:
-                    '<input id="swal-input1" class="swal2-input">',
-                focusConfirm: false,
-                preConfirm: () => {
-                    return [
-                        cod_bicicleta=document.getElementById('swal-input1').value,
-                    ]
-                }
-            })
+                const { value: formValues } = await Swal.fire({
+                    title: 'Codigo Bicicleta',
+                    inputLabel: 'Ingrese el Codigo de la Bicicleta',
+                    icon: 'info',
+                    html:
+                        '<input id="swal-input1" class="swal2-input">',
+                    focusConfirm: false,
+                    preConfirm: () => {
+                        return [
+                            cod_bicicleta = document.getElementById('swal-input1').value,
+                        ]
+                    }
+                })
 
-            if (formValues) {
-                alert (cod_bicicleta);
-            }
-        })();
-    }
-    
-    
+                if (formValues) {
+                    for (i in Bikes) {
+                        if (Bikes[i]["fields"].code_bike == cod_bicicleta) {
+
+                            Swal.fire(
+                                'Bicicleta Encontrada!',
+                                'Se marcara la ruta en el mapa.',
+                                'success'
+
+                            )
+                            searchControl.remove();
+                            var control = L.Routing.control({
+                                "type": "LineString",
+                                waypoints: [
+                                    L.latLng(lat_destino, lon_destino),
+                                    L.latLng(lat_actual, long_actual)
+                                ],
+
+
+                                lineOptions: {
+                                    styles: [
+                                        { color: 'black', opacity: 0.15, weight: 9 },
+                                        { color: 'white', opacity: 0.8, weight: 6 },
+                                        { color: 'red', opacity: 1, weight: 2 }
+                                    ],
+                                    missingRouteStyles: [
+                                        { color: 'black', opacity: 0.5, weight: 7 },
+                                        { color: 'white', opacity: 0.6, weight: 4 },
+                                        { color: 'gray', opacity: 0.8, weight: 2, dashArray: '7,12' }
+                                    ]
+                                },
+
+                                show: true,
+                                addWaypoints: false,
+                                autoRoute: true,
+                                routeWhileDragging: false,
+                                draggableWaypoints: false,
+                                useZoomParameter: false,
+                                showAlternatives: true,
+                                //  geocoder: L.Control.Geocoder.nominatim(),
+                                /*
+                                routingstart: function(){
+                                   console.log('routingstart')
+                                }*/
+                            }).addTo(map)
+
+                     
+
+
+                        } else {
+                            Swal.fire(
+                                'Bicicleta No Encontrada!',
+                                'No se ha encontrado la bicicleta con el codigo ingresado.',
+                                'error'
+
+                            )
+                        }
+                    }
+
+                }
+            })();
+        }
+
+
 
 
 
@@ -747,6 +809,8 @@
 
                 if (BikeStations_All[i]["fields"].name == EstacionSeleccionada) {
                     var dist = distance(position.coords.latitude, position.coords.longitude, BikeStations_All[i]["fields"].Latitude, BikeStations_All[i]["fields"].Longitude, "K")
+                    lat_actual = position.coords.latitude;
+                    long_actual = position.coords.longitude;
                     var dist2 = Math.round(dist, -10);
                     dist = Math.round(dist * 100) / 100;
                     if (dist <= 0.1 || dist == 0) {
@@ -781,24 +845,7 @@
 
 
 
-                            Swal.fire({
-                                title: 'Destino',
-                                text: "El Destino esta Correcto?",
-                                icon: 'question',
-                                showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                cancelButtonText: 'No',
-                                confirmButtonText: 'Si!'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    Swal.fire(
-                                        'Deleted!',
-                                        'Your file has been deleted.',
-                                        'success'
-                                    )
-                                }
-                            })
+
 
 
                         });
@@ -826,7 +873,7 @@
             }
         }
 
-        
+
 
 
 

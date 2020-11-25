@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link href="/static/css/style_register.css" rel="stylesheet" media="all">
+<script src="https://use.fontawesome.com/5660bc6666.js"></script>
+<link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quiscksands:300,400,500,700|Material+Icons">
+
+
+
+
+<body>
+    <div class="row">
+        <h4>Informacion de Pago</h4>
+       
+        <div class="input-group input-group-icon"><input type="number" placeholder="Numero de la Tarjeta de Credito" min="0" max="9999999999999999" onkeyup="if(parseInt(this.value)>9999999999999999){ this.value ='';  alert('Solo pueden ingresar 16 numeros'); }" required />
+            <div class="input-icon" style="margin-top:1px;"><i class="fa fa-credit-card"></i></div>
+        </div>
+        <div class="col-half">
+            <div class="input-group input-group-icon" style="margin-top:1px;"><input  type="number" min="0" max="1000" onkeyup="if(parseInt(this.value)>999){ this.value ='';  alert('Solo pueden ingresar 3 numeros'); }"
+                    placeholder="CVC" required />
+                <div class="input-icon" style="margin-top:1px;"><i class="fa fa-user"></i></div>
+            </div>
+        </div>
+        <div class="col-half">
+            <div class="input-group"><select required>
+                    <option>01</option>
+                    <option>02 </option>
+                    <option>03 </option>
+                    <option>04 </option>
+                    <option>05 </option>
+                    <option>06 </option>
+                    <option>07 </option>
+                    <option>08 </option>
+                    <option>09 </option>
+                    <option>10 </option>
+                    <option>11 </option>
+                    <option>12 </option>
+
+
+
+
+
+
+
+
+
+
+                </select><select required>
+                    <option>2021</option>
+                    <option>2022</option>
+                    <option>2023</option>
+                    <option>2024</option>
+                    <option>2025</option>
+                    <option>2026</option>
+                    <option>2027</option>
+                    <option>2028</option>
+
+
+
+
+
+
+                </select></div>
+        </div>
+    </div>
+    <div class="row">
+        <h4>Terminos y Condiciones </h4>
+        <div class="input-group" style="color: black;"><input type="checkbox" id="terms" /><label for="terms">Acepto los términos y
+            condiciones para suscribirse a este servicio, y por la presente confirmo que he leído la privacidad
+            política.</label></div>
+    </div>
+</body>
+</html>

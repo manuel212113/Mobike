@@ -4,6 +4,11 @@ import pyrebase
 
 from AppMobike.models import UserMobike
 
+from AppMobike.models import CreditCardInfo
+
+
+from AppMobike.forms import UserForm
+
 
 from django.contrib.auth.models import Group
 
@@ -62,6 +67,27 @@ def GetCurrentTypeUser(request):
 
 def ShowRegisterForm(request):
     return render(request,'views/register.html')
+
+
+
+def Register(request):
+	if request.user.is_authenticated:
+		return redirect('http://127.0.0.1:8000')
+	else:
+		form = UserForm()
+		if request.method == 'POST':
+			form = UserForm(request.POST)
+			if form.is_valid():
+				form.save()
+				user = form.cleaned_data.get('username')
+				messages.success(request, 'Cuenta Creada del usuario:  ' + user)
+
+				return redirect('http://127.0.0.1:8000/Dashboard')
+			
+
+		context = {'form':form}
+		return render(request, 'views/register.html', context)
+
 
 
 

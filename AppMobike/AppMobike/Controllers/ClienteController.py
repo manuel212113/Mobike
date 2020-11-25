@@ -24,8 +24,8 @@ def RentBike(request):
 
     BikeStations_list={}
     BikeStations_list = BikeStations.objects.values('name','Longitude','Latitude')
-   
+    Bikes=json_serializer.serialize(BikesModel.objects.all().order_by('code_bike'), ensure_ascii=False)
 
 
     
-    return render(request,'views/rentbike.html',{'username':current_user,'profileImage':profileImage,'BikeStations':stations,'listStations':BikeStations_list})
+    return render(request,'views/rentbike.html',{'username':current_user,'profileImage':profileImage,'BikeStations':stations,'listStations':BikeStations_list,'Bikes':Bikes})

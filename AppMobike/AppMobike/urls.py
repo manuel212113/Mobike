@@ -38,7 +38,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('',LoginView.as_view(template_name='views/index.html') , name='login'),
-    path('register',UserController.ShowRegisterForm,name='ShowRegisterForm'),
+    path('register',UserController.Register,name='Register'),
     path('Facebook', HomeController.FacebookPage, name='FacebookPage'),
     path('Dashboard',login_required(UserController.DashboardUser), name='DashboardUser'),
     path('logout', LogoutView.as_view(template_name='views/index.html'), name='logout'),

@@ -56,8 +56,10 @@ class UserMobike(AbstractBaseUser):
 
      REQUIRED_FIELDS=['email','name','last_name','RUT']
 
+     class Meta:
+          verbose_name_plural="RUT"
      def __str__(self):
-         return f'{self.name},{self.last_name}'
+          return self.RUT
      def has_perm(self,obj=None):
          return True
 
@@ -83,11 +85,23 @@ class BikeStations(models.Model):
 
 class BikesModel(models.Model):
       MODELS_BIKE=(('cannondale habit 1','CANNONDALE HABIT 1'),('canyon lux cf slx 9.0','CANYON LUX  9.0'),('cube ams 100','CUBE AMS 100'))
-      STATIONS=BikeStations.objects.all().values('name')
       code_bike=models.CharField('Numero Bicicleta',max_length=15,null=False,unique=True)
       bike_model=models.CharField('Modelo Bicicleta', max_length=50,choices=MODELS_BIKE )
       state_bike=models.CharField('Estado Bicicleta', max_length=30, default="Libre")
       ## Estacion de la bicicleta ##
       station=models.ForeignKey(BikeStations,verbose_name="Estacion",default=000, on_delete=models.SET_DEFAULT)
+
+
+class CreditCardInfo(models.Model):
+      CreditCardNumber=models.IntegerField('Numero Tarjeta de Credito',max_length=16, null=False, unique=True)
+      CV=models.IntegerField('Codigo Seguridad Tarjeta de Credito',max_length=3, null=False, unique=True)
+      MONTH=models.IntegerField('Mes Vencimiento',max_length=2, null=False)
+      YEAR=models.IntegerField('Año Vencimiento',max_length=4, null=False)
+      OWNER=models.ForeignKey(UserMobike,verbose_name="RUT",default=000, on_delete=models.SET_DEFAULT)
+
+
+      
+
+
 
 
