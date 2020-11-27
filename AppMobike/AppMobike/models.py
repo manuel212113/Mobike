@@ -101,6 +101,10 @@ class CreditCardInfo(models.Model):
 
 
       
+class BicycleParking(models.Model):
+      name= models.CharField('Nombre Estacionamiento', max_length=200,unique=True,null=False) 
+      Latitude= models.DecimalField('Latitud',max_digits=22, decimal_places=8, blank=True, null=False)
+      Longitude= models.DecimalField('Longitud',max_digits=22, decimal_places=9, blank=True, null=False)
 
 
 
