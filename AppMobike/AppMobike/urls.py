@@ -47,6 +47,8 @@ urlpatterns = [
     path('Dashboard/users/block/<int:id>', login_required(UserController.BlockUser), name='BlockUser'),
     path('Dashboard/users/update/<int:id>/<str:user_type>', login_required(UserController.UpdateUserType), name='UpdateUserType'),
     path('Dashboard/rent', ClienteController.RentBike, name='RentBike' ),
+    path('Dashboard/rent/add/<int:id>/<str:destination>/<str:InitialStation>/<str:FinalStation>/', ClienteController.AddTravel, name='AddTravel' ),
+
 
 
     

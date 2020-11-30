@@ -1,7 +1,7 @@
 from django import forms
 
 from .models import UserMobike
-from .models import CreditCardInfo
+from .models import CC_INFO
 
 
 from django.contrib.auth.forms import UserCreationForm

@@ -4,6 +4,8 @@ from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from creditcards.models import CardNumberField, CardExpiryField, SecurityCodeField
+
 
 
 class UserMobikeManager(BaseUserManager):
@@ -92,11 +94,10 @@ class BikesModel(models.Model):
       station=models.ForeignKey(BikeStations,verbose_name="Estacion",default=000, on_delete=models.SET_DEFAULT)
 
 
-class CreditCardInfo(models.Model):
-      CreditCardNumber=models.IntegerField('Numero Tarjeta de Credito',max_length=16, null=False, unique=True)
-      CV=models.IntegerField('Codigo Seguridad Tarjeta de Credito',max_length=3, null=False, unique=True)
-      MONTH=models.IntegerField('Mes Vencimiento',max_length=2, null=False)
-      YEAR=models.IntegerField('Año Vencimiento',max_length=4, null=False)
+class CC_INFO(models.Model):
+      CreditCardNumber= CardNumberField('Numero Tarjeta')
+      CV=SecurityCodeField('Codigo Seguridad')
+      EXPIRY=CardExpiryField('Fecha Expiración')
       OWNER=models.ForeignKey(UserMobike,verbose_name="RUT",default=000, on_delete=models.SET_DEFAULT)
 
 
@@ -105,6 +106,15 @@ class BicycleParking(models.Model):
       name= models.CharField('Nombre Estacionamiento', max_length=200,unique=True,null=False) 
       Latitude= models.DecimalField('Latitud',max_digits=22, decimal_places=8, blank=True, null=False)
       Longitude= models.DecimalField('Longitud',max_digits=22, decimal_places=9, blank=True, null=False)
+
+
+class BicycleTravel(models.Model):
+      Destination=models.CharField('Direccion Destino',max_length=200, null=False )
+      Location=models.CharField('Desde ', max_length=200,null=False)
+      InitialStation=models.CharField('Estacion de Inicio', max_length=200,null=False) 
+      FinalStation=models.CharField('Estacion de Destino', max_length=200,null=False) 
+      user=models.CharField('Usuario', max_length=200,null=False) 
+
 
 
 

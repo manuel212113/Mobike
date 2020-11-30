@@ -1258,6 +1258,22 @@ section {
     .header-wrap .account-item > .content {
         display: none;
     }
+    .contador{
+        position: absolute; 
+        margin-left: 350px; 
+        margin-top: -30px;
+    }
+}
+
+
+@media (min-width: 560px) and (max-width:757px){
+
+
+    .contador{
+        position:absolute;
+        margin-top:-80px;
+
+    }
 }
 
 @media (max-width: 991px) {

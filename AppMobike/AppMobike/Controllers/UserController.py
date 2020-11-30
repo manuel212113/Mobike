@@ -4,7 +4,7 @@ import pyrebase
 
 from AppMobike.models import UserMobike
 
-from AppMobike.models import CreditCardInfo
+from AppMobike.models import CC_INFO
 
 
 from AppMobike.forms import UserForm
@@ -42,7 +42,7 @@ counter=0
 def CheckStatusAccount(request):
      status_account = UserMobike.objects.get(id=request.user.id)
 
-     if status_account.state_account == False:
+     if status_account.state_account == False: 
         return True
 
 def GetProfileImage(request):
@@ -53,7 +53,10 @@ def GetProfileImage(request):
 def GetCurrentUser(request):
     current_user=request.user.username
     return current_user
- 
+
+def GetCurrentUserId(request):
+    current_user=request.user.id
+    return current_user
 
 def GetEmailCurrentUser(request):
     email=request.user.email

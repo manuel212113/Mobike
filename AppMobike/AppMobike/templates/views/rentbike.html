@@ -44,6 +44,9 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.11/dist/leaflet-routing-machine.css" />
     <script src="https://unpkg.com/leaflet-routing-machine@3.2.11/dist/leaflet-routing-machine.js"></script>
 
+    <!--Contador-->
+    <script src="https://cdn.jsdelivr.net/npm/easytimer@1.1.1/src/easytimer.min.js"></script>
+
 
 
     <!-- Vendor CSS-->
@@ -93,16 +96,16 @@
                                 <li>
                                     <a href="/Dashboard">Dashboard 1</a>
                                 </li>
-                              
+
                             </ul>
                         </li>
-                        
+
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-user"></i>Cuenta</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="login.html">Login</a>
+                                    <a href="#">Mis Recorridos</a>
                                 </li>
                                 <li>
                                     <a href="register.html">Register</a>
@@ -112,7 +115,7 @@
                                 </li>
                             </ul>
                         </li>
-                       
+
                 </div>
             </nav>
         </header>
@@ -132,10 +135,10 @@
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                              
+
                             </ul>
                         </li>
-                       
+
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-user"></i>Cuenta</a>
@@ -151,7 +154,7 @@
                                 </li>
                             </ul>
                         </li>
-                       
+
                     </ul>
                 </nav>
             </div>
@@ -304,7 +307,7 @@
                                                     <h5 class="name">
                                                         <a href="#">{{username}}</a>
                                                     </h5>
-                                                    <span class="email">{{email}}</span>
+                                                    <span class="email">{{username}}</span>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">
@@ -314,16 +317,16 @@
                                                 </div>
                                                 <div class="account-dropdown__item">
                                                     <a href="#">
-                                                        <i class="zmdi zmdi-settings"></i>Setting</a>
+                                                        <i class="zmdi zmdi-settings"></i>Cuenta</a>
                                                 </div>
                                                 <div class="account-dropdown__item">
                                                     <a href="#">
-                                                        <i class="zmdi zmdi-money-box"></i>Billing</a>
+                                                        <i class="zmdi zmdi-money-box"></i>Pago</a>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-power"></i>Logout</a>
+                                                <a href="../logout">
+                                                    <i class="zmdi zmdi-power"></i>Cerrar Sesion</a>
                                             </div>
                                         </div>
                                     </div>
@@ -341,9 +344,19 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <!-- MAP DATA-->
+                                {% if travel %}
+                                <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+                                    <span class="badge badge-pill badge-success">Exito</span>
+                                    Trayecto Agregado Correctamente :).
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                {% endif %}
+
                                 <div class="map-data m-b-40">
                                     <h3 class="title-3 m-b-30">
-                                        <i class="zmdi zmdi-map"></i>Arrendar</h3>
+                                        <i class="zmdi zmdi-map"></i> Arrendar</h3>
                                     <div class="filters">
                                         <div class="rs-select2--dark rs-select2--md m-r-10 rs-select2--border">
                                             <select class="js-select2" id="DisplayEstaciones"
@@ -359,34 +372,50 @@
                                             <div class="dropDownSelect2"></div>
 
                                         </div>
-                                        <button type="button" class="btn btn-primary"
-                                            onclick="getLocation()">Arrendar</button>
+                                        <button type="button" class="btn btn-primary" onclick="getLocation()"><i
+                                                class="fa fa-bicycle">
+                                            </i>Arrendar</button>
 
-                                        <div id="map" class=" m-b-20"
-                                            style="height: 400px;  margin-left:-20px; margin-top:30px ;">
+                                        <div class="dropDownSelect2"></div>
+
+                                        <div class="filters">
+                                            <div class="rs-select2--dark rs-select2--sm rs-select2--border">
+                                                <div style="display: none ; padding: 10px; font-size: 18px;  "
+                                                    id="basicUsage" class="au-select-dark">00:00:00</div>
+                                                <button type="button" id="TerminarViaje" onclick="getLocation_Finish()"
+                                                    style="display: none; padding: 10px; background-color: #FF5722; border: #FF5722 ; "
+                                                    class="btn btn-primary">
+                                                    <i class="fa fa-bicycle" style="padding: 5px;"></i>Finalizar
+                                                    Trayecto</button>
+                                            </div>
+
+                                            <div id="map" class=" m-b-40"
+                                                style="height: 400px;  margin-left:-20px; margin-top:30px ;">
+                                            </div>
+
                                         </div>
+
                                     </div>
-
                                 </div>
+                                <!-- END MAP DATA-->
                             </div>
-                            <!-- END MAP DATA-->
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="copyright">
-                                <p id="demo"></p>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p id="demo"></p>
 
-                                <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a
-                                        href="https://colorlib.com">Colorlib</a>.</p>
+                                    <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a
+                                            href="https://colorlib.com">Colorlib</a>.</p>
+                                    <div id="number" style="display: none;"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
     </div>
 
@@ -410,16 +439,7 @@
     <script src="/static/vendor/chartjs/Chart.bundle.min.js"></script>
     <script src="/static/vendor/select2/select2.min.js">
     </script>
-    <script src="/static/vendor/vector-map/jquery.vmap.js"></script>
-    <script src="/static/vendor/vector-map/jquery.vmap.min.js"></script>
-    <script src="/static/vendor/vector-map/jquery.vmap.sampledata.js"></script>
-    <script src="/static/vendor/vector-map/jquery.vmap.world.js"></script>
-    <script src="/static/vendor/vector-map/jquery.vmap.brazil.js"></script>
-    <script src="/static/vendor/vector-map/jquery.vmap.europe.js"></script>
-    <script src="/static/vendor/vector-map/jquery.vmap.france.js"></script>
-    <script src="/static/vendor/vector-map/jquery.vmap.germany.js"></script>
-    <script src="/static/vendor/vector-map/jquery.vmap.russia.js"></script>
-    <script src="/static/vendor/vector-map/jquery.vmap.usa.js"></script>
+
 
 
     <!--Map-->
@@ -433,8 +453,10 @@
 
 
     <script>
-
-        var lat_destino, lon_destino, Nombre_destino;
+        var timer = new Timer();/* contador de tiempo usuario*/
+        var segundos_valor = 0;
+        var divSegundos = document.getElementById("number"); /*contador segundos*/
+        var lat_destino, lon_destino, Nombre_destino,Nombre_inicio,nombre_estacionamiento;
         var lat_actual, lon_actual;
         const provider = new GeoSearch.BingProvider({
             params: {
@@ -497,7 +519,7 @@
             },
             strings: {
                 title: "Buscar mi Ubicación!",
-                popup: " esta a {distance} de distancia"
+                popup: " Margen de precision de : {distance} metros"
             }
 
         }));
@@ -508,8 +530,12 @@
 
 
 
-
-
+        let iconPark = L.icon({
+            iconUrl: '../static/images/marker_estacionamiento.png',
+            iconSize: [70, 70],
+            iconAnchor: [40, 40],
+            popupAnchor: [-1, -10]
+        })
 
 
         let iconMarker = L.icon({
@@ -522,13 +548,24 @@
 
 
         // Estaciones de biciciletas desde la base de datos//
+        
+
+        // Estacionamientos desde la Base de datos
+        BikeParking = {}
+        BikeParking = {{ Park | safe }};
+
+        Bikes = {}
+        Bikes = {{ Bikes | safe }};
+
         BikeStations_All = {}
         BikeStations_All = {{ BikeStations | safe }};
 
 
-        for (i in BikeStations_All) {
 
-            console.log(BikeStations_All[i]["fields"])
+
+        for (i in BikeParking) {
+            L.marker([BikeParking[i]["fields"].Latitude, BikeParking[i]["fields"].Longitude, 19], { icon: iconPark }).bindPopup(BikeParking[i]["fields"].name + '').addTo(map)
+
 
 
         }
@@ -542,8 +579,9 @@
 
 
 
-        Bikes = {}
-        Bikes = {{ Bikes | safe }};
+
+
+        
 
 
 
@@ -583,8 +621,20 @@
 
                             )
                             searchControl.remove();
+
+                            /* aqui abajo se obtiene la direccion(calle 213) de la latitud y longitud actual del cliente */
+                            $.get('https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' + lat_actual + '&lon=' + long_actual, function (data) {
+                                Nombre_inicio=(data.address.road + " " + data.address.state);
+                            });
+
+                            $.get('https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' + lat_destino + '&lon=' + lon_destino, function (data) {
+                                Nombre_destino=(data.address.road + " " + data.address.state);
+                            });
                             var control = L.Routing.control({
+
                                 "type": "LineString",
+                                language: 'es',
+
                                 waypoints: [
                                     L.latLng(lat_destino, lon_destino),
                                     L.latLng(lat_actual, long_actual)
@@ -595,7 +645,7 @@
                                     styles: [
                                         { color: 'black', opacity: 0.15, weight: 9 },
                                         { color: 'white', opacity: 0.8, weight: 6 },
-                                        { color: 'red', opacity: 1, weight: 2 }
+                                        { color: 'orange', opacity: 1, weight: 2 }
                                     ],
                                     missingRouteStyles: [
                                         { color: 'black', opacity: 0.5, weight: 7 },
@@ -611,16 +661,39 @@
                                 draggableWaypoints: false,
                                 useZoomParameter: false,
                                 showAlternatives: true,
-                                //  geocoder: L.Control.Geocoder.nominatim(),
-                                /*
-                                routingstart: function(){
-                                   console.log('routingstart')
-                                }*/
+
                             }).addTo(map)
 
 
+                            control.on('routesfound', function (e) {
+                                var routes = e.routes;
+                                var summary = routes[0].summary;
+                                var tiempoextra = Math.round(summary.totalTime % 3600 / 60 * 0.30) + Math.round(summary.totalTime % 3600 / 60);
+                                tiempoextra = tiempoextra + " Minutos"
 
-                     
+
+
+                                Swal.fire(
+                                    'Tiempo de Trayecto!',
+                                    'el tiempo de trayecto estimado es de ' + tiempoextra,
+                                    'info'
+
+                                )
+                                $("#basicUsage").show();
+
+                                $("#TerminarViaje").show();
+
+                                window.setInterval(function () {
+                                    divSegundos.innerHTML = segundos_valor;
+                                    segundos_valor++;
+                                }, 1000);
+
+                                timer.start();
+
+                                timer.addEventListener('secondsUpdated', function (e) {
+                                    $('#basicUsage').html(timer.getTimeValues().toString());
+                                });
+                            });
 
 
                         } else {
@@ -639,8 +712,109 @@
 
 
 
+        function getLocation_Finish() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(FinishTravel);
+            } else {
+                alert("Geolocation no esta soportado en este navegador.");
+            }
+        }
+
+        function round(value, decimals) {
+            return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
+        }
+
+        function FinishTravel(position) {
+
+            valor_final = segundos_valor * 0.11111111111;
+            round(valor_final, 2);
+            valorString = valor_final.toString();
+
+            for (i in BikeParking) {
+                /* dist calcula da distancia entre la posicion actual y la posicion del estacionamiento solo accediendo si es menor o igual a 0.1 (10 metros)*/
+                var dist = distance(position.coords.latitude, position.coords.longitude, BikeParking[i]["fields"].Latitude, BikeParking[i]["fields"].Longitude, "K")
+                if (dist <= 0.1 || dist == 0) {
+                     nombre_estacionamiento = BikeParking[i]["fields"].name
 
 
+
+
+                    alert("Cargando");
+                    Swal.mixin({
+                        confirmButtonText: 'OK',
+                        showCancelButton: false,
+                        progressSteps: ['1', '2', '3']
+
+                    }).queue([
+                        {
+                            icon: 'info',
+                            title: 'Valor A Pagar',
+                            html: 'Tiempo Trayecto: ' + timer.getTimeValues().toString() + ' <br> Monto a Pagar: ' + valorString.substr(0, 3) + " pesos",
+
+                        },
+                        {
+                            icon: 'warning',
+                            title: 'Estacionamiento Bicicleta',
+                            html: 'Debes Estacionar en: <br><strong>' + nombre_estacionamiento + '</strong><br> para finalizar el viaje',
+
+
+                        },
+                        {
+                            icon: 'info',
+                            title: 'Verificando Bicicleta Estacionada',
+                            showConfirmButton: false,
+                            timer: 3500
+                        },
+
+
+                   
+                    ]).then((result) => {
+                        Swal.fire(
+                            'Trayecto Finalizado Correctamente!',
+                            'El valor total sera Descontado de tu tarjeta' + '<br> Adios ',
+                            'success'
+
+                        )
+                        window.location = "/Dashboard/rent/add/" + {{user_id}}+"/"+Nombre_destino+"/"+EstacionSeleccionada+"/"+nombre_estacionamiento
+
+
+                    })
+
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                } else {
+                    Swal.fire(
+                        'Error!',
+                        'Estas muy lejos del estacionamiento.',
+                        'error'
+
+                    )
+                }
+
+            }
+        }
 
 
         function getLocation() {
@@ -700,9 +874,7 @@
                             $("#lng").val(e.location.x);
                             lat_destino = e.location.y;
                             lon_destino = e.location.x;
-                            Nombre_destino = e.location.label;
                             console.log(e);
-
 
 
 
