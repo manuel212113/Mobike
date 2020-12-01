@@ -17,7 +17,8 @@ from django.contrib.auth import get_user_model
 
 from django.contrib.auth.decorators import login_required
 
-
+from AppMobike.models import BicycleTravel
+from AppMobike.models import BicycleParking
 
 
 
@@ -102,19 +103,22 @@ def DashboardUser(request):
 
 
 
- 
+    users_all= UserMobike.objects.count()
+    travels_all= BicycleTravel.objects.count()
+    BicycleParking_all=BicycleParking.objects.count()
+    profile_photo=(GetProfileImage(request))
     rol=''
     if UserMobike.objects.filter(username=current_user, user_type='Funcionario'):
         rol='Funcionario'
-        return render(request,'views/Dashboard.html' ,{'username':current_user, 'rol_user':rol } )
+        return render(request,'views/Dashboard.html' ,{'username':current_user, 'rol_user':rol,'all_user':users_all,'travels':travels_all,'stations':BicycleParking_all,'photo':profile_photo } )
 
     elif UserMobike.objects.filter(username=current_user, user_type='Administrador'):
         rol='Administrador'
-        return render(request,'views/Dashboard.html' ,{'username':current_user, 'rol_user':rol} )
+        return render(request,'views/Dashboard.html' ,{'username':current_user, 'rol_user':rol,'all_user':users_all,'travels':travels_all,'stations':BicycleParking_all,'photo':profile_photo} )
 
     elif UserMobike.objects.filter(username=current_user, user_type='Cliente'):
         rol='Cliente'
-        return render(request,'views/Dashboard.html' ,{'username':current_user, 'rol_user':rol} )
+        return render(request,'views/Dashboard.html' ,{'username':current_user, 'rol_user':rol,'all_user':users_all,'travels':travels_all,'stations':BicycleParking_all,'photo':profile_photo} )
 
 
     else:
@@ -173,6 +177,11 @@ def BlockUser(request,id):
    elif status_account.state_account:
        UserMobike.objects.filter(id=id).update(state_account=False)
        return redirect('/Dashboard/users')
+
+
+
+
+
 
 
 

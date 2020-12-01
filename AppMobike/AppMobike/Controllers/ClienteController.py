@@ -60,7 +60,7 @@ def AddTravel(request,id,destination,InitialStation,FinalStation):
        current_username=UserController.GetCurrentUser(request)
        bt = BicycleTravel(Destination=destination, Location=InitialStation,InitialStation=InitialStation,FinalStation=FinalStation,user=current_username)
        bt.save()
-       return redirect(request,'/Dashboard/rent',{'travel':travel_success})
+       return redirect('/Dashboard/rent')
 
  
 
