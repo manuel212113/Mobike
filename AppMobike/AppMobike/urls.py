@@ -26,6 +26,7 @@ from django.contrib import admin
 from AppMobike.Controllers import HomeController
 from AppMobike.Controllers import UserController
 from AppMobike.Controllers import ClienteController
+from AppMobike.Controllers import FuncionarioController
 
 from django.conf import settings
 
@@ -47,7 +48,13 @@ urlpatterns = [
     path('Dashboard/users/block/<int:id>', login_required(UserController.BlockUser), name='BlockUser'),
     path('Dashboard/users/update/<int:id>/<str:user_type>', login_required(UserController.UpdateUserType), name='UpdateUserType'),
     path('Dashboard/rent', ClienteController.RentBike, name='RentBike' ),
-    path('Dashboard/rent/add/<int:id>/<str:destination>/<str:InitialStation>/<str:FinalStation>/', ClienteController.AddTravel, name='AddTravel' ),
+    path('Dashboard/rent/add/<int:id>/<str:destination>/<str:InitialStation>/<str:FinalStation>/<str:value>', ClienteController.AddTravel, name='AddTravel' ),
+    path('Dashboard/reports/transactions',FuncionarioController.Transactions,name='Transactions'),
+    path('Dashboard/reports/frequentArea',FuncionarioController.frequentArea,name='frequentArea'),
+    path('Dashboard/reports/transactions/pdf/<str:id>/<str:doc>',FuncionarioController.ViewPDFTransactions,name='ViewPDFTransactions'),
+    path('Dashboard/reports/transactions/create/pdf', FuncionarioController.GeneratePdfTransactions , name='GeneratePdfTransactions'),
+    path('Dashboard/reports/frequentArea/pdf/<str:id>/<str:doc>',FuncionarioController.ViewPDFFrequentArea,name='ViewPDFFrequentArea'),
+    path('Dashboard/reports/frequentArea/create/pdf', FuncionarioController.GeneratePdfFrequentArea , name='GeneratePdfFrequentArea'),
 
 
 

@@ -9,11 +9,13 @@ from AppMobike.models import BicycleParking
 from AppMobike.models import BicycleTravel
 
 from AppMobike.Controllers import UserController
+from AppMobike.models import TransactionsModel
 
 from django.core import serializers
 
 from django.core.serializers.json import DjangoJSONEncoder
 
+@login_required
 def RentBike(request):
 
   
@@ -43,8 +45,8 @@ def RentBike(request):
 
 
 
-
-def AddTravel(request,id,destination,InitialStation,FinalStation):
+@login_required
+def AddTravel(request,id,destination,InitialStation,FinalStation,value):
        if UserController.CheckStatusAccount(request):
           return HttpResponse("<h1>Tu Cuenta esta Bloqueda Contacta con Administración </h1> <a href=/logout>Cerrar Sesion</a> ." )
        
@@ -60,6 +62,8 @@ def AddTravel(request,id,destination,InitialStation,FinalStation):
        current_username=UserController.GetCurrentUser(request)
        bt = BicycleTravel(Destination=destination, Location=InitialStation,InitialStation=InitialStation,FinalStation=FinalStation,user=current_username)
        bt.save()
+       Transaction=TransactionsModel(user=current_username,value_travel=value)
+       Transaction.save()
        return redirect('/Dashboard/rent')
 
  

@@ -101,7 +101,7 @@
                         </li>
 
                         <li class="active has-sub">
-                            <a href="Dashboard/rent">
+                            <a href="">
                                 <i class="fas fa-bicycle"></i>Arrendar</a>
                         </li>
                         <li class="has-sub">
@@ -136,7 +136,7 @@
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="has-sub">
-                            <a class="js-arrow" href="#">
+                            <a class="js-arrow" href="../Dashboard">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
 
@@ -145,7 +145,7 @@
 
                         
                         <li class="active has-sub">
-                            <a href="Dashboard/rent">
+                            <a href="">
                                 <i class="fas fa-bicycle"></i>Arrendar</a>
                         </li>
                         <li class="has-sub">
@@ -514,8 +514,8 @@
 
         var map = new L.Map('map', {
             layers: [mapbox],
-            center: [51.505, -0.09],
-            zoom: 18,
+            center: [-33.6891097, -71.2389077],
+            zoom: 5,
             zoomControl: true
         });
 
@@ -784,7 +784,7 @@
                             'success'
 
                         )
-                        window.location = "/Dashboard/rent/add/" + {{user_id}}+"/"+Nombre_destino+"/"+EstacionSeleccionada+"/"+nombre_estacionamiento
+                        window.location = "/Dashboard/rent/add/" + {{user_id}}+"/"+Nombre_destino+"/"+EstacionSeleccionada+"/"+nombre_estacionamiento+"/"+valorString
 
 
                     })

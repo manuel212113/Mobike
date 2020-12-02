@@ -115,6 +115,11 @@ class BicycleTravel(models.Model):
       FinalStation=models.CharField('Estacion de Destino', max_length=200,null=False) 
       user=models.CharField('Usuario', max_length=200,null=False) 
 
+class TransactionsModel(models.Model):
+      user=models.CharField('Usuario', max_length=200,null=False) 
+      value_travel=models.CharField('Valor Trayecto', max_length=200,null=False) 
+
+
 
 
 
