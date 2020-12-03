@@ -10,16 +10,44 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Dashboard</title>
+    <title>Agregar Bicicleta</title>
 
     <!-- Fontfaces CSS-->
     <link href="/static/css/font-face.css" rel="stylesheet" media="all">
     <link href="/static/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <link href="/static/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="/static/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
     <!-- Bootstrap CSS-->
     <link href="/static/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+
+
+    <!--Mapa-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="../../static/mapa/L.Control.Locate.js"></script>
+    <link rel="stylesheet" href="../../static/mapa/L.Control.Locate.min.css" />
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet-src.js"></script>
+
+
+    <!--GeoAdress-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-geosearch@3.1.0/dist/geosearch.css" />
+    <script src="https://unpkg.com/leaflet-geosearch@3.1.0/dist/geosearch.umd.js"></script>
+    <!--RUTA-->
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.11/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.11/dist/leaflet-routing-machine.js"></script>
+
+    <!--Contador-->
+    <script src="https://cdn.jsdelivr.net/npm/easytimer@1.1.1/src/easytimer.min.js"></script>
+
+
 
     <!-- Vendor CSS-->
     <link href="/static/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
@@ -29,15 +57,20 @@
     <link href="/static/vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="/static/vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="/static/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <link href="/static/vendor/vector-map/jqvmap.min.css" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
     <link href="/static/css/theme.css" rel="stylesheet" media="all">
+
+
 
 </head>
 
 <body class="animsition">
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
+
+
         <header class="header-mobile d-block d-lg-none">
             <div class="header-mobile__bar">
                 <div class="container-fluid">
@@ -61,121 +94,50 @@
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="">Panel de Inicio </a>
+                                    <a href="/Dashboard">Dashboard 1</a>
                                 </li>
-                               
+
                             </ul>
                         </li>
-                        {% if rol_user == "Funcionario" %} 
-
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-file-word"></i>Reportes</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li>
-                                    <a href="reports/frequentArea">Zonas Frecuentes</a>
-                                </li>
-                                <li>
-                                    <a href="reports/Transactions">Ultimas Transacciones</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-user"></i>Cuenta</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li>
-                                    <a href="#">Configuración</a>
-                                </li>
-                                <li>
-                                    <a href="#">Cambiar Contraseña</a>
-                                </li>
-                                <li>
-                                    <a href="#">Eliminar Cuenta</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        {% elif rol_user == "Administrador" %} 
 
                         <li>
-                            <a href="Dashboard/users">
+                            <a href="../../Dashboard/users">
                                 <i class="fas fa-users"></i>Usuarios</a>
                         </li>
 
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-copy"></i>Cuenta</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <i class="fas fa-user"></i>Cuenta</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="login.html">Configuracion</a>
+                                    <a href="#">Configuracion</a>
                                 </li>
                                 <li>
-                                    <a href="register.html">Cambiar Contraseña</a>
+                                    <a href="#">Cambiar Contraseña</a>
                                 </li>
+
                                 <li>
-                                    <a href="forget-pass.html">Eliminar Cuenta</a>
+                                    <a href="#">Eliminar Cuenta</a>
                                 </li>
+
                             </ul>
-                        </li>
-
-
-                        
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-map-marker-alt"></i>Estacionamientos</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li>
-                                    <a href="{% url  'AddParkStation'%}">Agregar Estacionamientos</a>
-                                </li>
-                                <li>
-                                    <a href="{% url  'ListParkStation'%}">Listar Estacionamientos</a>
-                                </li>
-                               
-                            </ul>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="zmdi zmdi zmdi-bike"></i>Bicicletas</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li>
-                                    <a href="{% url  'AddBike'%}">Agregar Bicicletas</a>
-                                </li>
-                                <li>
-                                    <a href="{% url  'ListBike'%}">Listar Bicicletas</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        {% elif rol_user == "Cliente" %} 
-
-                        <li>
-                            <a href="Dashboard/rent">
-                                <i class="fas fa-bicycle"></i>Arrendar</a>
                         </li>
 
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-copy"></i>Cuenta</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <i class="fas fa-map-marker-alt"></i>Estacionamiento</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="login.html">Configuracion</a>
+                                    <a href="{% url  'AddParkStation'%}">Agregar Estacionamiento/a>
                                 </li>
                                 <li>
-                                    <a href="register.html">Cambiar Contraseña</a>
+                                    <a href="{% url  'ListStation'%}">Listar Estacionamiento/a>
                                 </li>
-                                <li>
-                                    <a href="forget-pass.html">Eliminar Cuenta</a>
-                                </li>
+
+
+
                             </ul>
                         </li>
-                        {% endif %}
-                      
-                        
-                       
-                        
-                    </ul>
                 </div>
             </nav>
         </header>
@@ -191,53 +153,17 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        <li class="active has-sub">
-                            <a class="js-arrow" href="#">
+                        <li class="has-sub">
+                            <a class="js-arrow" href="../Dashboard">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="">Panel de Inicio </a>
-                                </li>
-                              
-                            </ul>
-                        </li>
-                        {% if rol_user == "Funcionario" %} 
 
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-file-word"></i>Reportes</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="Dashboard/reports/frequentArea">Zonas Frecuentes</a>
-                                </li>
-                                <li>
-                                    <a href="Dashboard/reports/transactions">Ultimas Transacciones</a>
-                                </li>
-                                
                             </ul>
                         </li>
 
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-user"></i>Cuenta</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="#">Configuracion</a>
-                                </li>
-                                <li>
-                                    <a href="#">Cambiar Contraseña</a>
-                                </li>
-
-                                <li>
-                                    <a href="#">Eliminar Cuenta</a>
-                                </li>
-                                
-                            </ul>
-                        </li>
-                        {% elif rol_user == "Administrador" %} 
 
                         <li>
-                            <a href="Dashboard/users">
+                            <a href="../../Dashboard/users">
                                 <i class="fas fa-users"></i>Usuarios</a>
                         </li>
 
@@ -255,7 +181,7 @@
                                 <li>
                                     <a href="#">Eliminar Cuenta</a>
                                 </li>
-                                
+
                             </ul>
                         </li>
 
@@ -274,9 +200,10 @@
                                 
                             </ul>
                         </li>
-                        <li class="has-sub">
+
+                        <li class="active has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="zmdi zmdi zmdi-bike"></i>Bicicletas</a>
+                                <i class="zmdi zmdi-bike"></i>Bicicletas</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
                                     <a href="{% url  'AddBike'%}">Agregar Bicicletas</a>
@@ -291,45 +218,15 @@
                                 <i class="fas fa-map-marker-alt"></i>Estacion</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="{% url 'AddStation' %}">Agregar  Estacion</a>
+                                    <a href="{% url 'AddStation' %}">Agregar Estacion</a>
                                 </li>
                                 <li>
-                                    <a href="{% url 'ListStation' %}">Listar Estacionamiento</a>
+                                    <a href="{% url 'ListStation' %}">Listar Estaciones</a>
                                 </li>
                                
                             </ul>
                         </li>
 
-
-                        {% elif rol_user == "Cliente" %} 
-
-                        <li>
-                            <a href="Dashboard/rent">
-                                <i class="fas fa-bicycle"></i>Arrendar</a>
-                        </li>
-
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-user"></i>Cuenta</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="#">Configuracion</a>
-                                </li>
-                                <li>
-                                    <a href="#">Cambiar Contraseña</a>
-                                </li>
-
-                                <li>
-                                    <a href="#">Eliminar Cuenta</a>
-                                </li>
-                                
-                            </ul>
-                        </li>
-                        {% endif %}
-
-                       
-                       
-                        
                     </ul>
                 </nav>
             </div>
@@ -343,8 +240,9 @@
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="header-wrap">
-                            <form class="form-header" action="" method="POST">
-                                <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
+                            <form class="form-header">
+                                <input class="au-input au-input--xl" type="text" name="search"
+                                    placeholder="Search for datas &amp; reports..." />
                                 <button class="au-btn--submit" type="submit">
                                     <i class="zmdi zmdi-search"></i>
                                 </button>
@@ -360,7 +258,7 @@
                                             </div>
                                             <div class="mess__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="/static/images/icon/avatar-06.jpg" alt="Michelle Moreno" />
+                                                    <img src="images/icon/avatar-06.jpg" alt="Michelle Moreno" />
                                                 </div>
                                                 <div class="content">
                                                     <h6>Michelle Moreno</h6>
@@ -370,7 +268,7 @@
                                             </div>
                                             <div class="mess__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="/static/images/icon/avatar-04.jpg" alt="Diane Myers" />
+                                                    <img src="images/icon/avatar-04.jpg" alt="Diane Myers" />
                                                 </div>
                                                 <div class="content">
                                                     <h6>Diane Myers</h6>
@@ -392,7 +290,7 @@
                                             </div>
                                             <div class="email__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="/static/images/icon/avatar-06.jpg" alt="Cynthia Harvey" />
+                                                    <img src="images/icon/avatar-06.jpg" alt="Cynthia Harvey" />
                                                 </div>
                                                 <div class="content">
                                                     <p>Meeting about new dashboard...</p>
@@ -401,7 +299,7 @@
                                             </div>
                                             <div class="email__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="/static/images/icon/avatar-05.jpg" alt="Cynthia Harvey" />
+                                                    <img src="images/icon/avatar-05.jpg" alt="Cynthia Harvey" />
                                                 </div>
                                                 <div class="content">
                                                     <p>Meeting about new dashboard...</p>
@@ -410,7 +308,7 @@
                                             </div>
                                             <div class="email__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="/static/images/icon/avatar-04.jpg" alt="Cynthia Harvey" />
+                                                    <img src="images/icon/avatar-04.jpg" alt="Cynthia Harvey" />
                                                 </div>
                                                 <div class="content">
                                                     <p>Meeting about new dashboard...</p>
@@ -464,46 +362,42 @@
                                 </div>
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
-                                        {% if photo%}
                                         <div class="image">
-                                           
-                                                <img src="../images/{{photo}}" alt="{{username}} foto" />
+                                            <img src="../images/{{profileImage}}" alt="John Doe" />
                                         </div>
-                    
-                                        {% endif %}
                                         <div class="content">
                                             <a class="js-acc-btn" href="#">{{username}}</a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
-                                                {% if photo%}
                                                 <div class="image">
-                                                   
                                                     <a href="#">
-                                                        <img src="../images/{{photo}}" alt="{{username}} foto" />
+                                                        <img src="../images/{{profileImage}}" alt="John Doe" />
                                                     </a>
-                                                </div>                                             
-                                                {% endif %}
+                                                </div>
                                                 <div class="content">
                                                     <h5 class="name">
                                                         <a href="#">{{username}}</a>
                                                     </h5>
-                                                    <span class="email">{{email}}</span>
+                                                    <span class="email">{{username}}</span>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">
                                                 <div class="account-dropdown__item">
                                                     <a href="#">
-                                                        <i class="zmdi zmdi-account"></i>Cuenta</a>
+                                                        <i class="zmdi zmdi-account"></i>Account</a>
                                                 </div>
                                                 <div class="account-dropdown__item">
                                                     <a href="#">
-                                                        <i class="zmdi zmdi-settings"></i>Configuración</a>
+                                                        <i class="zmdi zmdi-settings"></i>Cuenta</a>
                                                 </div>
-                                               
+                                                <div class="account-dropdown__item">
+                                                    <a href="#">
+                                                        <i class="zmdi zmdi-money-box"></i>Pago</a>
+                                                </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="/logout">
+                                                <a href="../logout">
                                                     <i class="zmdi zmdi-power"></i>Cerrar Sesion</a>
                                             </div>
                                         </div>
@@ -514,125 +408,125 @@
                     </div>
                 </div>
             </header>
-            <!-- HEADER DESKTOP-->
+            <!-- END HEADER DESKTOP-->
 
-            <!-- MAIN CONTENT-->
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="overview-wrap">
-                                    <h2 class="title-1">Bienvenido {{username}}</h2>
-                                   
-                            </div>
-                        </div>
-                        {% if rol_user == "Administrador" %} 
-                        <div class="row m-t-25">
-                            <div class="col-sm-6 col-lg-4" >
-                                <div class="overview-item overview-item--c1">
-                                    <div class="overview__inner">
-                                        <div class="overview-box clearfix">
-                                            <div class="icon">
-                                                <i class="zmdi zmdi-account-o"></i>
-                                            </div>
-                                            <div class="text">
-                                                <h2>{{all_user}}</h2>
-                                                <span>usuarios registrados</span>
-                                            </div>
-                                        </div>
-                                        <div class="overview-chart">
-                                            <canvas id="widgetChart1"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                <!-- MAP DATA-->
 
-                            <div class="col-sm-6 col-lg-4">
-                                <div class="overview-item overview-item--c2">
-                                    <div class="overview__inner">
-                                        <div class="overview-box clearfix">
-                                            <div class="icon">
-                                                <i class="zmdi zmdi-gps-dot"></i>
-                                            </div>
-                                            <div class="text">
-                                                <h2>{{travels}}</h2>
-                                                <span>viajes realizados</span>
-                                            </div>
-                                        </div>
-                                        <div class="overview-chart">
-                                            <canvas id="widgetChart2"></canvas>
-                                        </div>
-                                    </div>
+                                <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+                                    <span class="badge badge-pill badge-success">Importante</span>
+                                    <br> Ingresa La informacion requerida para poder agregar una bicicleta.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
-                            </div>
-                            <div class="col-sm-6 col-lg-4">
-                                <div class="overview-item overview-item--c3">
-                                    <div class="overview__inner">
-                                        <div class="overview-box clearfix">
-                                            <div class="icon">
-                                                <i class="zmdi zmdi-pin"></i>
-                                            </div>
-                                            <div class="text">
-                                                <h2>{{stations}}</h2>
-                                                <span>Estacionamientos</span>
-                                            </div>
-                                        </div>
-                                        <div class="overview-chart">
-                                            <canvas id="widgetChart2"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            
-                        </div>
-                        {% endif%}
-                        {% if rol_user == "Cliente" %} 
 
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-header bg-dark">
-                                    <strong class="card-title text-light">Novedad 2021</strong>
-                                </div>
-                                <img class="card-img-top" src="https://mobike.com/global/public/image_6.10f2dd7.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h4 class="card-title mb-3">Nueva Bicicleta Electrica!</h4>
-                                    <p class="card-text"> A partir del proximo año estara en todas la estaciones :D
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-header bg-dark">
-                                    <strong class="card-title text-light">Descuento Primer Viaje</strong>
-                                </div>
-                                <img class="card-img-top"  src="https://img.freepik.com/foto-gratis/10-ciento-descuento-promocion_2227-142.jpg?size=626&ext=jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h4 class="card-title mb-3">10% en el Primer Viaje!</h4>
-                                    <p class="card-text"> se aplica solo a trayectos mayores a 5km
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif%}
 
-                                  
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="copyright">
-                                    <p>Copyright © 2020 Mobike. All rights reserved.</p>
+                                <div class="map-data m-b-40">
+                                    <h3 class="title-3 m-b-30">
+                                        <i class="zmdi zmdi-bike"></i> Agregar Bicicleta</h3>
+
+
+
+                                        <div class="col-lg-6">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <strong>Bicicleta</strong>
+                                                    <small> Formulario</small>
+                                                </div>
+                                                <div class="card-body card-block">
+                                                    <div class="form-group">
+                                                        <label for="company" class=" form-control-label">Codigo
+                                                            Bicicleta</label>
+                                                        <input type="text" id="company"
+                                                            placeholder="Ingresa El codigo de la Bicicleta"
+                                                            class="form-control" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="vat" class=" form-control-label">Modelo
+                                                            Bicicleta</label>
+                                                        <input type="text" id="vat" placeholder="Ej:C90"
+                                                            class="form-control" required>
+                                                    </div>
+                                                    <div class="row form-group">
+                                                        <div class="col col-md-3">
+                                                            <label for="selectLg" class=" form-control-label">Estacion
+                                                                Bicicleta</label>
+                                                        </div>
+                                                        <div class="col-12 col-md-9">
+                                                            <select  id="selectLg"
+                                                                class="form-control-lg form-control" required>
+                                                                {% for estacion in BikeStations%}
+
+                                                                <option value="{{estacion.name}}">{{estacion.name}}
+                                                                </option>
+                                                                {% endfor %}
+                                                            </select>
+                                                        </div>
+                                                        <div>
+                                                            <button id="payment-button" onclick="showElement()"
+                                                                style="margin-top: 10px; margin-left: 20px;"
+                                                                type="submit" class="btn btn-lg btn-info btn-block">
+                                                                <i class="fa fa-send"></i>&nbsp;
+                                                                <span id="payment-button-amount">Agregar Bicicleta
+                                                                </span>
+                                                                <span id="payment-button-sending"
+                                                                    style="display:none;">Agregando...</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
                                 </div>
+
+                            </div>
+                            <!-- END MAP DATA-->
+                        </div>
+                    </div>
+
+                    <script>
+                        function showElement() {
+                            var modelo_bicicleta = document.getElementById("vat").value;
+                            var codigo_bicicleta = document.getElementById("company").value;
+                            var estacion=$( "#selectLg option:selected" ).text();
+                            modelo_bicicleta=(modelo_bicicleta.toString());
+                            codigo_bicicleta=(codigo_bicicleta.toString());
+                            estacion=(estacion.toString());
+
+                            if (codigo_bicicleta.length>2 && modelo_bicicleta.length>2 ){
+                                $("#payment-button-amount").hide();
+                                $("#payment-button-sending").show(); 
+                                window.location = "/Dashboard/bike/add/new/" + codigo_bicicleta+"/"+modelo_bicicleta+"/"+estacion
+
+                              
+                            }
+                        }
+                       
+
+                    </script>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="copyright">
+                                <p id="demo"></p>
+
+                                <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a
+                                        href="https://colorlib.com">Colorlib</a>.</p>
+                                <div id="number" style="display: none;"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- END MAIN CONTENT-->
-            <!-- END PAGE CONTAINER-->
         </div>
+    </div>
 
     </div>
 
@@ -657,10 +551,259 @@
     <script src="/static/vendor/select2/select2.min.js">
     </script>
 
+
+
+    <!--Map-->
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.72.0/src/L.Control.Locate.min.js"
+        charset="utf-8"></script>
+    <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
+
+
+
+
+
+
+    <script>
+        var lat_destino, lon_destino, Nombre_destino, Nombre_inicio, nombre_estacionamiento;
+        var lat_actual, lon_actual;
+        const provider = new GeoSearch.BingProvider({
+            params: {
+                key: 'AgBxeF9_Du7s-MRwc44BPh56F0XdA1FBc-lSXqmCdtmAKk6wawbUKY8G93kN5Odw',
+            },
+        });
+
+
+
+        const searchControl = new GeoSearch.GeoSearchControl({
+            provider: provider,
+            style: 'bar',
+            showMarker: true, // optional: true|false  - default true
+            marker: {
+                // optional: L.Marker    - default L.Icon.Default
+                icon: new L.Icon.Default(),
+                draggable: false,
+            },
+            popupFormat: ({ query, result }) => "<a onclick='addStation()' style='pointer:cursor;'>Confirmar Destino</a>",
+            searchLabel: 'Ingresa Destino', // optional: string      - default 'Enter address'
+
+
+        });
+
+
+        var EstacionSeleccionada = ""
+        var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+        var osmAttrib = 'Map data © <a href="http://osm.org/copyright">OpenStreetMap</a> contributors';
+        var osm = new L.TileLayer(osmUrl, {
+            attribution: osmAttrib,
+            detectRetina: true
+        });
+
+        // please replace this with your own mapbox token!
+        var token = 'pk.eyJ1IjoibWFudWVsMjEyMTEzIiwiYSI6ImNraG1vanRwbjBkMWkycW1rZ2lobWprZncifQ.BZYsaF7Bs7K3WKY6rGR1Fg';
+        var mapboxUrl = 'https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/{z}/{x}/{y}@2x?access_token=' + token;
+        var mapboxAttrib = 'Map data © <a href="http://osm.org/copyright">OpenStreetMap</a> contributors. Tiles from <a href="https://www.mapbox.com">Mapbox</a>.';
+        var mapbox = new L.TileLayer(mapboxUrl, {
+            attribution: mapboxAttrib,
+            tileSize: 512,
+            zoomOffset: -1
+        });
+
+
+
+
+        var map = new L.Map('map', {
+            layers: [mapbox],
+            center: [-33.6891097, -71.2389077],
+            zoom: 5,
+            zoomControl: true
+        });
+
+        // add location control to global name space for testing only
+        // on a production site, omit the "lc = "!
+
+        map.addControl(L.control.locate({
+            locateOptions: {
+                enableHighAccuracy: true
+            },
+            strings: {
+                title: "Buscar mi Ubicación!",
+                popup: " Margen de precision de : {distance} metros"
+            }
+
+        }));
+
+
+
+
+
+
+
+        let iconPark = L.icon({
+            iconUrl: '../static/images/marker_estacionamiento.png',
+            iconSize: [70, 70],
+            iconAnchor: [40, 40],
+            popupAnchor: [-1, -10]
+        })
+
+
+        let iconMarker = L.icon({
+            iconUrl: '../static/images/marker.png',
+            iconSize: [70, 70],
+            iconAnchor: [40, 40],
+            popupAnchor: [-5, -30]
+
+        })
+
+        map.addControl(searchControl);
+
+        map.on('geosearch/showlocation', function (e) {
+            $("#lat").val(e.location.y);
+            $("#lng").val(e.location.x);
+            lat_destino = e.location.y;
+            lon_destino = e.location.x;
+            console.log(e);
+
+
+
+
+
+
+
+
+
+
+
+
+
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /* aqui abajo se obtiene la direccion(calle 213) de la latitud y longitud actual del cliente */
+        $.get('https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' + lat_actual + '&lon=' + long_actual, function (data) {
+            Nombre_inicio = (data.address.road + " " + data.address.state);
+        });
+
+        $.get('https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' + lat_destino + '&lon=' + lon_destino, function (data) {
+            Nombre_destino = (data.address.road + " " + data.address.state);
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(getUserPosition);
+            } else {
+                alert("Geolocation no esta soportado en este navegador.");
+            }
+        }
+
+        function addStation() {
+            var nombre_estacion;
+            (async () => {
+                const { value: formValues } = await Swal.fire({
+                    title: 'Nombre Estacionamiento',
+                    inputLabel: 'Ingrese El nombre del Estacionamiento',
+                    icon: 'info',
+                    html:
+                        '<input id="swal-input1" class="swal2-input">',
+                    focusConfirm: false,
+                    preConfirm: () => {
+                        return [
+                            nombre_estacion = document.getElementById('swal-input1').value,
+                        ]
+                    }
+                })
+                if (formValues) {
+
+                    Swal.fire(
+                        'Agregando  Estacionamiento!',
+                        'Se esta Agregando El estacionamiento',
+                        'success'
+
+                    )
+                    lat_destino = lat_destino.toString()
+                    lon_destino = lon_destino.toString()
+                    window.location = "/Dashboard/park/add/new/" + lat_destino + "/" + lon_destino + "/" + nombre_estacion
+
+                }
+
+            })();
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
     <!-- Main JS-->
     <script src="/static/js/main.js"></script>
 
 </body>
 
 </html>
-<!-- end document-->

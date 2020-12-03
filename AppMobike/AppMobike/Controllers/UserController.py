@@ -19,6 +19,8 @@ from django.contrib.auth.decorators import login_required
 
 from AppMobike.models import BicycleTravel
 from AppMobike.models import BicycleParking
+from AppMobike.models import BikeStations
+from AppMobike.models import BikesInfo
 
 
 
@@ -72,6 +74,91 @@ def GetCurrentTypeUser(request):
 def ShowRegisterForm(request):
     return render(request,'views/register.html')
 
+
+
+
+def AddNewParkStation(request,lat,lon,name):
+    bp = BicycleParking(name=name,Latitude=lat, Longitude=lon)
+    bp.save()
+    return redirect('/Dashboard/park/add')
+
+    
+
+def AddBike(request):
+     if CheckStatusAccount(request):
+        return HttpResponse("<h1>Tu Cuenta esta Bloqueda Contacta con Administración </h1> <a href=/logout>Cerrar Sesion</a> ." )
+
+     if GetCurrentTypeUser(request)=="Funcionario" or GetCurrentTypeUser(request)=="Cliente":
+        return HttpResponse("<h1>Acceso Denegado </h1> <a href=/Dashboard>ir Al Panel de Inicio</a> ." )
+     all_BikeStations={}
+     all_BikeStations = BikeStations.objects.values()
+     return render(request,'views/bikesAdd.html',{'BikeStations':all_BikeStations})
+
+
+
+def AddNewBike(request,cod_bici,modelo_bici,estacion_bici):
+    bike= BikesInfo(code_bike=cod_bici,bike_model=modelo_bici,state_bike="Libre",station=estacion_bici)
+    bike.save()
+    return redirect('/Dashboard/bike/add')
+
+
+def ListParkStation(request):
+     if CheckStatusAccount(request):
+        return HttpResponse("<h1>Tu Cuenta esta Bloqueda Contacta con Administración </h1> <a href=/logout>Cerrar Sesion</a> ." )
+
+     if GetCurrentTypeUser(request)=="Funcionario" or GetCurrentTypeUser(request)=="Cliente":
+        return HttpResponse("<h1>Acceso Denegado </h1> <a href=/Dashboard>ir Al Panel de Inicio</a> ." )
+
+
+     all_BicycleParking={}
+     all_BicycleParking = BicycleParking.objects.values()
+     current_user=GetCurrentUser(request)
+     all_BicycleParking = list(all_BicycleParking)
+     return render(request,'views/ListPark.html', {'ListPark':all_BicycleParking, 'username':current_user})
+
+def AddParkStation(request):
+    return render(request,'views/parking.html')
+
+def AddStation(request):
+    return render(request,'views/station.html')
+
+
+def AddNewStation(request,lat,lon,name):
+    bikeStation= BikeStations(Latitude=lat,Longitude=lon,name=name)
+    bikeStation.save()
+    return redirect('/Dashboard/station/add')
+
+
+
+def ListStation(request):
+    if CheckStatusAccount(request):
+        return HttpResponse("<h1>Tu Cuenta esta Bloqueda Contacta con Administración </h1> <a href=/logout>Cerrar Sesion</a> ." )
+
+    if GetCurrentTypeUser(request)=="Funcionario" or GetCurrentTypeUser(request)=="Cliente":
+        return HttpResponse("<h1>Acceso Denegado </h1> <a href=/Dashboard>ir Al Panel de Inicio</a> ." )
+
+
+    all_BikeStations={}
+    all_BikeStations = BikeStations.objects.values()
+    current_user=GetCurrentUser(request)
+    all_BikeStations = list(all_BikeStations)
+    return render (request, 'views/ListStation.html',{'ListStation':all_BikeStations, 'username':current_user})
+
+    
+
+def ListBike(request):
+    if CheckStatusAccount(request):
+        return HttpResponse("<h1>Tu Cuenta esta Bloqueda Contacta con Administración </h1> <a href=/logout>Cerrar Sesion</a> ." )
+
+    if GetCurrentTypeUser(request)=="Funcionario" or GetCurrentTypeUser(request)=="Cliente":
+        return HttpResponse("<h1>Acceso Denegado </h1> <a href=/Dashboard>ir Al Panel de Inicio</a> ." )
+
+
+    all_BikesInfo={}
+    all_BikesInfo = BikesInfo.objects.values()
+    current_user=GetCurrentUser(request)
+    all_BikesInfo = list(all_BikesInfo)
+    return render(request,'views/ListBike.html', {'ListBike':all_BikesInfo, 'username':current_user})
 
 
 def Register(request):

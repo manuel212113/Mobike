@@ -10,7 +10,7 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Dashboard</title>
+    <title>Estacionamientos</title>
 
     <!-- Fontfaces CSS-->
     <link href="/static/css/font-face.css" rel="stylesheet" media="all">
@@ -43,7 +43,7 @@
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <a class="logo" href="index.html">
-                            <img src="/static/images/logo_orange.png" alt="CoolAdmin" />
+                            <img src="https://mobike.com/global/public/header_logo_dark.png" alt="CoolAdmin" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -61,83 +61,59 @@
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="">Panel de Inicio </a>
-                                </li>
-                               
-                            </ul>
-                        </li>
-                        {% if rol_user == "Funcionario" %} 
-
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-file-word"></i>Reportes</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li>
-                                    <a href="reports/frequentArea">Zonas Frecuentes</a>
+                                    <a href="index.html">Dashboard 1</a>
                                 </li>
                                 <li>
-                                    <a href="reports/Transactions">Ultimas Transacciones</a>
+                                    <a href="index2.html">Dashboard 2</a>
+                                </li>
+                                <li>
+                                    <a href="index3.html">Dashboard 3</a>
+                                </li>
+                                <li>
+                                    <a href="index4.html">Dashboard 4</a>
                                 </li>
                             </ul>
                         </li>
-
+                        <li>
+                            <a href="Dashboard">
+                                <i class="fas fa-chart-bar"></i>Panel de Inicio</a>
+                        </li>
+                        <li>
+                            <a href="Dashboard/users">
+                                <i class="fas fa-users"></i>Usuarios</a>
+                        </li>
+                     
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-user"></i>Cuenta</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="#">Configuración</a>
+                                    <a href="login.html">Login</a>
                                 </li>
                                 <li>
-                                    <a href="#">Cambiar Contraseña</a>
+                                    <a href="register.html">Register</a>
                                 </li>
                                 <li>
-                                    <a href="#">Eliminar Cuenta</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        {% elif rol_user == "Administrador" %} 
-
-                        <li>
-                            <a href="Dashboard/users">
-                                <i class="fas fa-users"></i>Usuarios</a>
-                        </li>
-
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-copy"></i>Cuenta</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li>
-                                    <a href="login.html">Configuracion</a>
-                                </li>
-                                <li>
-                                    <a href="register.html">Cambiar Contraseña</a>
-                                </li>
-                                <li>
-                                    <a href="forget-pass.html">Eliminar Cuenta</a>
+                                    <a href="forget-pass.html">Forget Password</a>
                                 </li>
                             </ul>
                         </li>
-
-
-                        
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-map-marker-alt"></i>Estacionamientos</a>
+                                <i class="fas fa-map-marker-alt"></i>Estacionamiento</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="{% url  'AddParkStation'%}">Agregar Estacionamientos</a>
+                                    <a href="login.html">Agregar Estacionamiento</a>
                                 </li>
                                 <li>
-                                    <a href="{% url  'ListParkStation'%}">Listar Estacionamientos</a>
+                                    <a href="register.html">Listar Estacionamiento</a>
                                 </li>
                                
                             </ul>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="zmdi zmdi zmdi-bike"></i>Bicicletas</a>
+                                <i class="fas fa-map-marker-alt"></i>Bicicletas</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
                                     <a href="{% url  'AddBike'%}">Agregar Bicicletas</a>
@@ -147,34 +123,6 @@
                                 </li>
                             </ul>
                         </li>
-
-                        {% elif rol_user == "Cliente" %} 
-
-                        <li>
-                            <a href="Dashboard/rent">
-                                <i class="fas fa-bicycle"></i>Arrendar</a>
-                        </li>
-
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-copy"></i>Cuenta</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li>
-                                    <a href="login.html">Configuracion</a>
-                                </li>
-                                <li>
-                                    <a href="register.html">Cambiar Contraseña</a>
-                                </li>
-                                <li>
-                                    <a href="forget-pass.html">Eliminar Cuenta</a>
-                                </li>
-                            </ul>
-                        </li>
-                        {% endif %}
-                      
-                        
-                       
-                        
                     </ul>
                 </div>
             </nav>
@@ -185,93 +133,54 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                    <img src="/static/images/logo_orange.png" alt="Cool Admin" />
+                    <img src="https://mobike.com/global/public/header_logo_dark.png" alt="Cool Admin" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        <li class="active has-sub">
+                        <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="">Panel de Inicio </a>
+                                    <a href="../Dashboard">Panel de Inicio</a>
                                 </li>
-                              
-                            </ul>
-                        </li>
-                        {% if rol_user == "Funcionario" %} 
 
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-file-word"></i>Reportes</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="Dashboard/reports/frequentArea">Zonas Frecuentes</a>
-                                </li>
-                                <li>
-                                    <a href="Dashboard/reports/transactions">Ultimas Transacciones</a>
-                                </li>
-                                
                             </ul>
                         </li>
 
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-user"></i>Cuenta</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="#">Configuracion</a>
-                                </li>
-                                <li>
-                                    <a href="#">Cambiar Contraseña</a>
-                                </li>
-
-                                <li>
-                                    <a href="#">Eliminar Cuenta</a>
-                                </li>
-                                
-                            </ul>
-                        </li>
-                        {% elif rol_user == "Administrador" %} 
-
-                        <li>
-                            <a href="Dashboard/users">
+                        <li class="">
+                            <a href="../../Dashboard/users">
                                 <i class="fas fa-users"></i>Usuarios</a>
                         </li>
-
+                       
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-user"></i>Cuenta</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="#">Configuracion</a>
+                                    <a href="login.html">Login</a>
                                 </li>
                                 <li>
-                                    <a href="#">Cambiar Contraseña</a>
+                                    <a href="register.html">Register</a>
                                 </li>
-
                                 <li>
-                                    <a href="#">Eliminar Cuenta</a>
+                                    <a href="forget-pass.html">Forget Password</a>
                                 </li>
-                                
                             </ul>
                         </li>
-
-                        <li class="has-sub">
+                        <li class="active has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-map-marker-alt"></i>Estacionamientos</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <i class="fas fa-map-marker-alt"></i>Estacionamiento</a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href= "{% url  'AddParkStation'%}">Agregar Estacionamientos</a>
+                                    <a href="{% url 'AddParkStation' %}">Agregar Estacionamiento</a>
                                 </li>
                                 <li>
-                                    <a href="{% url  'ListParkStation'%}">Listar Estacionamientos</a>
+                                    <a href="{% url 'ListParkStation' %}">Listar Estacionamiento</a>
                                 </li>
-
                                
-                                
                             </ul>
                         </li>
                         <li class="has-sub">
@@ -299,36 +208,6 @@
                                
                             </ul>
                         </li>
-
-
-                        {% elif rol_user == "Cliente" %} 
-
-                        <li>
-                            <a href="Dashboard/rent">
-                                <i class="fas fa-bicycle"></i>Arrendar</a>
-                        </li>
-
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-user"></i>Cuenta</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="#">Configuracion</a>
-                                </li>
-                                <li>
-                                    <a href="#">Cambiar Contraseña</a>
-                                </li>
-
-                                <li>
-                                    <a href="#">Eliminar Cuenta</a>
-                                </li>
-                                
-                            </ul>
-                        </li>
-                        {% endif %}
-
-                       
-                       
                         
                     </ul>
                 </nav>
@@ -344,7 +223,8 @@
                     <div class="container-fluid">
                         <div class="header-wrap">
                             <form class="form-header" action="" method="POST">
-                                <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
+                                <input class="au-input au-input--xl" type="text" name="search"
+                                    placeholder="Search for datas &amp; reports..." />
                                 <button class="au-btn--submit" type="submit">
                                     <i class="zmdi zmdi-search"></i>
                                 </button>
@@ -360,7 +240,7 @@
                                             </div>
                                             <div class="mess__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="/static/images/icon/avatar-06.jpg" alt="Michelle Moreno" />
+                                                    <img src="images/icon/avatar-06.jpg" alt="Michelle Moreno" />
                                                 </div>
                                                 <div class="content">
                                                     <h6>Michelle Moreno</h6>
@@ -370,7 +250,7 @@
                                             </div>
                                             <div class="mess__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="/static/images/icon/avatar-04.jpg" alt="Diane Myers" />
+                                                    <img src="images/icon/avatar-04.jpg" alt="Diane Myers" />
                                                 </div>
                                                 <div class="content">
                                                     <h6>Diane Myers</h6>
@@ -392,7 +272,7 @@
                                             </div>
                                             <div class="email__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="/static/images/icon/avatar-06.jpg" alt="Cynthia Harvey" />
+                                                    <img src="images/icon/avatar-06.jpg" alt="Cynthia Harvey" />
                                                 </div>
                                                 <div class="content">
                                                     <p>Meeting about new dashboard...</p>
@@ -401,7 +281,7 @@
                                             </div>
                                             <div class="email__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="/static/images/icon/avatar-05.jpg" alt="Cynthia Harvey" />
+                                                    <img src="images/icon/avatar-05.jpg" alt="Cynthia Harvey" />
                                                 </div>
                                                 <div class="content">
                                                     <p>Meeting about new dashboard...</p>
@@ -410,7 +290,7 @@
                                             </div>
                                             <div class="email__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="/static/images/icon/avatar-04.jpg" alt="Cynthia Harvey" />
+                                                    <img src="images/icon/avatar-04.jpg" alt="Cynthia Harvey" />
                                                 </div>
                                                 <div class="content">
                                                     <p>Meeting about new dashboard...</p>
@@ -464,47 +344,43 @@
                                 </div>
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
-                                        {% if photo%}
                                         <div class="image">
-                                           
-                                                <img src="../images/{{photo}}" alt="{{username}} foto" />
+                                            <img src="/static/images/icon/avatar-01.jpg" alt="John Doe" />
                                         </div>
-                    
-                                        {% endif %}
                                         <div class="content">
                                             <a class="js-acc-btn" href="#">{{username}}</a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
-                                                {% if photo%}
                                                 <div class="image">
-                                                   
                                                     <a href="#">
-                                                        <img src="../images/{{photo}}" alt="{{username}} foto" />
+                                                        <img src="/static/images/icon/avatar-01.jpg" alt="John Doe" />
                                                     </a>
-                                                </div>                                             
-                                                {% endif %}
+                                                </div>
                                                 <div class="content">
                                                     <h5 class="name">
                                                         <a href="#">{{username}}</a>
                                                     </h5>
-                                                    <span class="email">{{email}}</span>
+                                                    <span class="email">johndoe@example.com</span>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">
                                                 <div class="account-dropdown__item">
                                                     <a href="#">
-                                                        <i class="zmdi zmdi-account"></i>Cuenta</a>
+                                                        <i class="zmdi zmdi-account"></i>Account</a>
                                                 </div>
                                                 <div class="account-dropdown__item">
                                                     <a href="#">
-                                                        <i class="zmdi zmdi-settings"></i>Configuración</a>
+                                                        <i class="zmdi zmdi-settings"></i>Setting</a>
                                                 </div>
-                                               
+                                                <div class="account-dropdown__item">
+                                                    <a href="#">
+                                                        <i class="zmdi zmdi-money-box"></i>Billing</a>
+                                                </div>
                                             </div>
                                             <div class="account-dropdown__footer">
                                                 <a href="/logout">
-                                                    <i class="zmdi zmdi-power"></i>Cerrar Sesion</a>
+                                                    <i class="zmdi zmdi-power"></i>Cerrar sesion</a>
                                             </div>
                                         </div>
                                     </div>
@@ -514,151 +390,169 @@
                     </div>
                 </div>
             </header>
-            <!-- HEADER DESKTOP-->
+            <!-- END HEADER DESKTOP-->
 
             <!-- MAIN CONTENT-->
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
+
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="overview-wrap">
-                                    <h2 class="title-1">Bienvenido {{username}}</h2>
-                                   
-                            </div>
-                        </div>
-                        {% if rol_user == "Administrador" %} 
-                        <div class="row m-t-25">
-                            <div class="col-sm-6 col-lg-4" >
-                                <div class="overview-item overview-item--c1">
-                                    <div class="overview__inner">
-                                        <div class="overview-box clearfix">
-                                            <div class="icon">
-                                                <i class="zmdi zmdi-account-o"></i>
-                                            </div>
-                                            <div class="text">
-                                                <h2>{{all_user}}</h2>
-                                                <span>usuarios registrados</span>
-                                            </div>
+                                <!-- DATA TABLE -->
+                                <h3 class="title-5 m-b-35">Lista de Estacionamiento</h3>
+                                <div class="table-data__tool">
+                                    <div class="table-data__tool-left">
+                                        <div class="rs-select2--light rs-select2--md">
+                                            <h4 class="title-3 m-b-25" style="font-size: 20px;">RUT:</h4>
+                                            <input type="text" placeholder="  Ej:20.230.343-6" style="height: 40px;">
+
+                                            <div class="dropDownSelect2"></div>
                                         </div>
-                                        <div class="overview-chart">
-                                            <canvas id="widgetChart1"></canvas>
+                                        <div class="rs-select2--light rs-select2--sm">
+
+                                            <div class="dropDownSelect2"></div>
+                                        </div>
+                                        <button class="au-btn-filter" style="margin-left:-50px;">
+                                            <i class="zmdi zmdi-filter-list"></i>Buscar</button>
+                                    </div>
+                                    <div class="table-data__tool-right">
+                                        <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                                            <i class="zmdi zmdi-plus"></i>add item</button>
+                                        <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
+                                            <select class="js-select2" name="type">
+                                                <option selected="selected">Exportar</option>
+
+                                                <option value=""> A PDF</option>
+
+                                            </select>
+                                            <div class="dropDownSelect2"></div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="table-responsive table-responsive-data2">
+                                    <table class="table table-data2">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                Nombre Estacionamiento
+                                                </th>
+                                                <th>Latitud</th>
+                                                <th>Longitud</th>
 
-                            <div class="col-sm-6 col-lg-4">
-                                <div class="overview-item overview-item--c2">
-                                    <div class="overview__inner">
-                                        <div class="overview-box clearfix">
-                                            <div class="icon">
-                                                <i class="zmdi zmdi-gps-dot"></i>
-                                            </div>
-                                            <div class="text">
-                                                <h2>{{travels}}</h2>
-                                                <span>viajes realizados</span>
-                                            </div>
-                                        </div>
-                                        <div class="overview-chart">
-                                            <canvas id="widgetChart2"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-lg-4">
-                                <div class="overview-item overview-item--c3">
-                                    <div class="overview__inner">
-                                        <div class="overview-box clearfix">
-                                            <div class="icon">
-                                                <i class="zmdi zmdi-pin"></i>
-                                            </div>
-                                            <div class="text">
-                                                <h2>{{stations}}</h2>
-                                                <span>Estacionamientos</span>
-                                            </div>
-                                        </div>
-                                        <div class="overview-chart">
-                                            <canvas id="widgetChart2"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            
-                        </div>
-                        {% endif%}
-                        {% if rol_user == "Cliente" %} 
 
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-header bg-dark">
-                                    <strong class="card-title text-light">Novedad 2021</strong>
-                                </div>
-                                <img class="card-img-top" src="https://mobike.com/global/public/image_6.10f2dd7.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h4 class="card-title mb-3">Nueva Bicicleta Electrica!</h4>
-                                    <p class="card-text"> A partir del proximo año estara en todas la estaciones :D
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-header bg-dark">
-                                    <strong class="card-title text-light">Descuento Primer Viaje</strong>
-                                </div>
-                                <img class="card-img-top"  src="https://img.freepik.com/foto-gratis/10-ciento-descuento-promocion_2227-142.jpg?size=626&ext=jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h4 class="card-title mb-3">10% en el Primer Viaje!</h4>
-                                    <p class="card-text"> se aplica solo a trayectos mayores a 5km
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif%}
+                                            </tr>
 
-                                  
-                        <div class="row">
+                                        </thead>
+
+                                        <tbody>
+
+
+                                            {% for row in ListPark %}
+
+
+                                            <td>{{row.name}}</td>
+
+
+                                            
+
+                                            <td>
+                                                <span class="desc">{{row.Latitude}}</span>
+                                            </td>
+
+
+
+                                            <td>
+                                                <span class="desc">{{row.Longitude}}</span>
+                                            </td>
+
+
+
+
+
+
+
+                                            <td>
+                                                <div class="table-data-feature">
+                                                    <button onclick="" class="item" data-toggle="tooltip"
+                                                        data-placement="top" title="Eliminar">
+                                                        <a ><i
+                                                                class="zmdi zmdi-block"></i></a>
+                                                    </button>
+
+                                                    <button class="item" data-toggle="tooltip" data-placement="top"
+                                                        title="Veer">
+                                                        <a name="username" 
+                                                            id="Eliminar"><i class="zmdi zmdi-delete"></i></a>
+                                                    </button>
+
+                                                   
+                                                </div>
+
+
+                                            </td>
+
+
+                                            </tr>
+
+                                            {% endfor %}
+
+
+                                                
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- END DATA TABLE -->
+                            </div>
+                        </div>
+                        <div class="row m-t-30">
                             <div class="col-md-12">
-                                <div class="copyright">
-                                    <p>Copyright © 2020 Mobike. All rights reserved.</p>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="copyright">
+                                        <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a
+                                                href="https://colorlib.com">Colorlib</a>.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- END MAIN CONTENT-->
-            <!-- END PAGE CONTAINER-->
+
         </div>
 
-    </div>
+        <!-- Jquery JS-->
+        <script src="/static/vendor/jquery-3.2.1.min.js"></script>
+        <!-- Bootstrap JS-->
+        <script src="/static/vendor/bootstrap-4.1/popper.min.js"></script>
+        <script src="/static/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+        <!-- Vendor JS       -->
+        <script src="/static/vendor/slick/slick.min.js">
+        </script>
+        <script src="/static/vendor/wow/wow.min.js"></script>
+        <script src="/static/vendor/animsition/animsition.min.js"></script>
+        <script src="/static/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+        </script>
+        <script src="/static/vendor/counter-up/jquery.waypoints.min.js"></script>
+        <script src="/static/vendor/counter-up/jquery.counterup.min.js">
+        </script>
+        <!--SweetAlert 2-->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-    <!-- Jquery JS-->
-    <script src="/static/vendor/jquery-3.2.1.min.js"></script>
-    <!-- Bootstrap JS-->
-    <script src="/static/vendor/bootstrap-4.1/popper.min.js"></script>
-    <script src="/static/vendor/bootstrap-4.1/bootstrap.min.js"></script>
-    <!-- Vendor JS       -->
-    <script src="/static/vendor/slick/slick.min.js">
-    </script>
-    <script src="/static/vendor/wow/wow.min.js"></script>
-    <script src="/static/vendor/animsition/animsition.min.js"></script>
-    <script src="/static/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
-    </script>
-    <script src="/static/vendor/counter-up/jquery.waypoints.min.js"></script>
-    <script src="/static/vendor/counter-up/jquery.counterup.min.js">
-    </script>
-    <script src="/static/vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="/static/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="/static/vendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="/static/vendor/select2/select2.min.js">
-    </script>
+        <script src="/static/vendor/circle-progress/circle-progress.min.js"></script>
+        <script src="/static/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+        <script src="/static/vendor/chartjs/Chart.bundle.min.js"></script>
+        <script src="/static/vendor/select2/select2.min.js">
+        </script>
 
-    <!-- Main JS-->
-    <script src="/static/js/main.js"></script>
+        <!-- Main JS-->
+        <script src="/static/js/main.js"></script>
+
+
 
 </body>
 

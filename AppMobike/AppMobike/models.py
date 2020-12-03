@@ -85,13 +85,13 @@ class BikeStations(models.Model):
           return self.name
 
 
-class BikesModel(models.Model):
+class BikesInfo(models.Model):
       MODELS_BIKE=(('cannondale habit 1','CANNONDALE HABIT 1'),('canyon lux cf slx 9.0','CANYON LUX  9.0'),('cube ams 100','CUBE AMS 100'))
       code_bike=models.CharField('Numero Bicicleta',max_length=15,null=False,unique=True)
       bike_model=models.CharField('Modelo Bicicleta', max_length=50,choices=MODELS_BIKE )
       state_bike=models.CharField('Estado Bicicleta', max_length=30, default="Libre")
       ## Estacion de la bicicleta ##
-      station=models.ForeignKey(BikeStations,verbose_name="Estacion",default=000, on_delete=models.SET_DEFAULT)
+      station=models.CharField('Estacion',max_length=300)
 
 
 class CC_INFO(models.Model):

@@ -4,7 +4,7 @@ from django.shortcuts import render,get_object_or_404,redirect,HttpResponse
 import pyrebase
 
 from AppMobike.models import BikeStations
-from AppMobike.models import BikesModel
+from AppMobike.models import BikesInfo
 from AppMobike.models import BicycleParking
 from AppMobike.models import BicycleTravel
 
@@ -34,7 +34,7 @@ def RentBike(request):
 
     BikeStations_list={}
     BikeStations_list = BikeStations.objects.values('name','Longitude','Latitude')
-    Bikes=json_serializer.serialize(BikesModel.objects.all().order_by('code_bike'), ensure_ascii=False)
+    Bikes=json_serializer.serialize(BikesInfo.objects.all().order_by('code_bike'), ensure_ascii=False)
     BicyclePark=json_serializer.serialize(BicycleParking.objects.all().order_by('name'), ensure_ascii=False)
 
 

@@ -55,6 +55,17 @@ urlpatterns = [
     path('Dashboard/reports/transactions/create/pdf', FuncionarioController.GeneratePdfTransactions , name='GeneratePdfTransactions'),
     path('Dashboard/reports/frequentArea/pdf/<str:id>/<str:doc>',FuncionarioController.ViewPDFFrequentArea,name='ViewPDFFrequentArea'),
     path('Dashboard/reports/frequentArea/create/pdf', FuncionarioController.GeneratePdfFrequentArea , name='GeneratePdfFrequentArea'),
+    path('Dashboard/park/add', UserController.AddParkStation , name='AddParkStation'),
+    path('Dashboard/park/add/new/<str:lat>/<str:lon>/<str:name>', UserController.AddNewParkStation , name='AddNewParkStation'),
+    path('Dashboard/park/list', UserController.ListParkStation , name='ListParkStation'),
+    path('Dashboard/bike/add', UserController.AddBike , name='AddBike'),
+    path('Dashboard/bike/add/new/<str:cod_bici>/<str:modelo_bici>/<str:estacion_bici>', UserController.AddNewBike , name='AddNewBike'),
+    path('Dashboard/bike/list', UserController.ListBike , name='ListBike'),
+    path('Dashboard/station/add', UserController.AddStation, name='AddStation'),
+    path('Dashboard/station/list', UserController.ListStation, name='ListStation'),
+    path('Dashboard/station/add/new/<str:lat>/<str:lon>/<str:name>', UserController.AddNewStation,name='AddNewStation')
+
+
 
 
 
