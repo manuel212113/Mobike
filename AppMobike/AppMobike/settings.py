@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '8*%=a+*c&)sw08jka^yb339vds+n5&^^n*2i_cyds@92bj7-j7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -118,6 +118,9 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 # Static files (CSS, JavaScript, Images)
