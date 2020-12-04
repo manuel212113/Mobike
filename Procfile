@@ -1,1 +1,1 @@
-web: gunicorn AppMobike.wsgi
+web: gunicorn --pythonpath AppMobike AppMobike.wsgi --log-file -
