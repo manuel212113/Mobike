@@ -1,1 +1,1 @@
-web: gunicorn AppMobike.wsgi
+web: gunicorn AppMobike.AppMobike.wsgi
