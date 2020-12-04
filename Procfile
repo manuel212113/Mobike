@@ -1,0 +1,1 @@
+web: gunic AppMobike.wsgi
