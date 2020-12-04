@@ -20,8 +20,8 @@ from django.contrib.auth.views import LogoutView
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 
-import include
 from django.contrib import admin
+from django.conf.urls import include
 
 from AppMobike.Controllers import HomeController
 from AppMobike.Controllers import UserController
